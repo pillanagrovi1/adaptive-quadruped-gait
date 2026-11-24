@@ -1,0 +1,14 @@
+# build products
+build/
+*.so
+*.o
+tools/qemu_plugin/include/
+# generated results: re-create them with the scripts; commit only what you report
+results/raw/
+results/m4/
+results/figures/
+# python
+__pycache__/
+*.pyc
+.venv/
+.pytest_cache/

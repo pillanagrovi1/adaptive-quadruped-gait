@@ -1,0 +1,29 @@
+name: ci
+on:
+  push:
+    branches: [main]
+  pull_request:
+jobs:
+  test:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - name: System packages
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y --no-install-recommends gcc-arm-none-eabi libnewlib-arm-none-eabi qemu-system-arm libglib2.0-dev pkg-config
+      - uses: actions/setup-python@v5
+        with: {python-version: "3.12"}
+      - run: pip install -r requirements.txt
+      - name: C tests under the undefined-behaviour sanitizer
+        run: |
+          make build/test_core CFLAGS="-O1 -g -std=c11 -fsanitize=undefined -fno-sanitize-recover=all"
+          ./build/test_core
+          make clean
+      - name: Host build and tests (includes the corridor check: C == Python, bit for bit)
+        run: make test
+      - name: Cortex-M4 build, QEMU run, host == M4 bit-exact check
+        run: |
+          make -C tools/qemu_plugin
+          python3 scripts/measure_m4.py smoke --check
