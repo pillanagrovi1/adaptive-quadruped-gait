@@ -21,7 +21,7 @@ jobs:
           make build/test_core CFLAGS="-O1 -g -std=c11 -fsanitize=undefined -fno-sanitize-recover=all"
           ./build/test_core
           make clean
-      - name: Host build and tests (includes the corridor check: C == Python, bit for bit)
+      - name: Host build and tests (includes the corridor check, C == Python bit for bit)
         run: make test
       - name: Cortex-M4 build, QEMU run, host == M4 bit-exact check
         run: |
