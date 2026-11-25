@@ -14,7 +14,7 @@ import numpy as np
 
 from .model import LEGS, SERVOS, config, joint_qpos_adr, load
 from .sensors import Sensors
-from .servo import ServoBank, joints_to_servos
+from .servo import ServoBank, joints_to_servos, profile
 
 
 def _ry(v, t):
@@ -83,18 +83,20 @@ def tilt_deg(quat: np.ndarray) -> float:
     return math.degrees(math.acos(max(-1.0, min(1.0, zz))))
 
 
-def stand_test(delay_ms: float | None = None, seconds: float = 10.0, seed: int = 0) -> dict:
+def stand_test(delay_ms: float | None = None, seconds: float = 10.0, seed: int = 0,
+               servo_profile: str | None = None) -> dict:
     """10 s on flat ground holding the standing pose. Returns the gate numbers."""
     cfg = config()
-    m, d = load()
+    prof = profile(servo_profile)
+    m, d = load(prof["name"])
     q = stand_pose(m)
     place(m, d, q)
-    servos = ServoBank(m, delay_ms, cfg)
+    servos = ServoBank(m, delay_ms, cfg, prof)
     s0 = joints_to_servos(q)
     servos.reset(s0)
     servos.command(s0)
-    sens = Sensors(m, seed, cfg)
-    stall = cfg["servo"]["stall_torque_Nm"]["value"]
+    sens = Sensors(m, seed, cfg, prof=prof)
+    stall, rated = prof["stall_torque_Nm"], prof["rated_torque_Nm"]
     steps = int(round(seconds / m.opt.timestep))
     robot = {m.geom(i).name for i in range(m.ngeom)} - {"floor"}
     feet = {f"{leg}_foot" for leg in LEGS}
@@ -120,6 +122,7 @@ def stand_test(delay_ms: float | None = None, seconds: float = 10.0, seed: int =
     z = np.array(z)
     i1 = int(round(1.0 / m.opt.timestep))
     return {
+        "servo_profile": prof["name"], "stall_torque_Nm": stall, "rated_torque_Nm": rated,
         "delay_ms": servos.delay_ms, "seconds": seconds,
         "hip_height_cmd_mm": cfg["stand_hip_height_mm"]["value"],
         "torso_z_start_mm": float(z[0] * 1000), "torso_z_1s_mm": float(z[i1] * 1000), "torso_z_end_mm": float(z[-1] * 1000),
@@ -129,6 +132,8 @@ def stand_test(delay_ms: float | None = None, seconds: float = 10.0, seed: int =
         "torque_max_Nm": dict(zip(SERVOS, tau_max.round(4).tolist())),
         "torque_max_frac_stall": dict(zip(SERVOS, (tau_max / stall).round(4).tolist())),
         "torque_after_1s_frac_stall": dict(zip(SERVOS, (tau_late / stall).round(4).tolist())),
+        "torque_max_frac_rated": dict(zip(SERVOS, (tau_max / rated).round(4).tolist())),
+        "torque_after_1s_frac_rated": dict(zip(SERVOS, (tau_late / rated).round(4).tolist())),
         "self_collisions": sorted(self_hits), "non_foot_floor_contacts": sorted(floor_hits),
         "stand_pose_rad": dict(zip(SERVOS, q.round(5).tolist())),
     }

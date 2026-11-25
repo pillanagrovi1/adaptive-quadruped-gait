@@ -81,7 +81,7 @@ def solve(g, d_servo, d_femur=0.0):
 
 
 def analyse(g):
-    half = math.radians(CFG["servo"]["travel_deg"]["value"] / 2)
+    half = math.radians(CFG["servo_travel_deg"]["value"] / 2)
     margin = CFG["joint_limit_margin_deg"]["value"]
     cad = solve(g, 0.0)["tibia_pitch"]
     rows = []

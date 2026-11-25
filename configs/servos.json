@@ -1,0 +1,63 @@
+{
+  "_note": "Servo profiles. configs/robot.json picks one ('servo_profile'). Every value has a status: published (with link), derived (with formula), assumed. docs/model_card.md lists them all.",
+  "_sources": {
+    "open_duck": "https://github.com/apirrone/Open_Duck_Playground/blob/f6988368da959156d94fcd53b76864724dc52860/playground/open_duck_mini_v2/xmls/open_duck_mini_v2.xml (default class 'sts3215', lines 45-55)",
+    "bam_m1": "https://github.com/Rhoban/bam/blob/279c4828c466e7e19b631c45203b0e3582be9869/bam/params/feetech_sts3215_7_4V/m1.json",
+    "seller": "https://openelab.io/products/feetech-sts3215-c018-servo-12v (spec table for the C018; 'Product Comparison' table for the C001 7.4 V)"
+  },
+
+  "sts3215_7v4": {
+    "what": "Feetech STS3215-C001, 7.4 V, 345:1. The measured reference profile (BAM / Open Duck).",
+    "profile_status": "published (measured by BAM, used by Open Duck)",
+    "kp_Nm_per_rad": {"value": 13.37, "status": "published", "source": "open_duck: <position kp=\"13.37\"> (a commented-out line has 17.12)"},
+    "forcerange_Nm": {"value": 3.23, "status": "published", "source": "open_duck: forcerange=\"-3.23 3.23\""},
+    "damping_Nm_s_per_rad": {"value": 0.56, "status": "published", "source": "open_duck: joint damping=\"0.56\" (= BAM back-EMF kt^2/R = 1.178^2/2.479 = 0.559)"},
+    "frictionloss_Nm": {"value": 0.068, "status": "published", "source": "open_duck: frictionloss=\"0.068\""},
+    "armature_kg_m2": {"value": 0.027, "status": "published", "source": "open_duck: armature=\"0.027\""},
+    "backlash_deg": {"value": 0.5, "status": "published", "source": "open_duck: class 'backlash', range +-0.008727 rad (+-0.5 deg); seller: gear backlash <= 0.5 deg"},
+    "backlash_damping_Nm_s_per_rad": {"value": 0.01, "status": "published", "source": "open_duck: class 'backlash' damping=\"0.01\""},
+    "backlash_armature_kg_m2": {"value": 0.01, "status": "published", "source": "open_duck: class 'backlash' armature=\"0.01\""},
+    "stall_torque_Nm": {"value": 1.912, "status": "published", "source": "seller: C001 stall 19.5 kg.cm at 7.4 V (x 0.0980665)"},
+    "rated_torque_Nm": {"value": 0.490, "status": "published", "source": "seller: C001 rated 5 kg.cm at 7.4 V"},
+    "no_load_speed_rad_s": {"value": 5.454, "status": "published", "source": "seller: C001 0.192 s/60 deg -> 1.0472 / 0.192"},
+    "deadband_deg": {"value": 0.088, "status": "assumed", "source": "one encoder step (360/4096); the firmware dead-zone setting is not checked"},
+    "mass_g": {"value": 55.0, "status": "published", "source": "seller: 55 +- 1 g"}
+  },
+
+  "sts3215_12v": {
+    "what": "Feetech STS3215-C018, 12 V, 345:1. DERIVED, NOT MEASURED: the 7.4 V model scaled to the seller's 12 V figures. The default profile (D19).",
+    "profile_status": "derived (not measured)",
+    "_formula": "s_tau = stall_12 / stall_7.4 = 30 / 19.5 = 1.5385;  s_w = speed_12 / speed_7.4 = (0.192 s) / (0.222 s) = 0.8649.  kp, forcerange x s_tau;  damping x s_tau / s_w (so that top speed ~ forcerange / damping scales by s_w);  frictionloss, armature, backlash unchanged (same 345:1 gearbox: assumed)",
+    "kp_Nm_per_rad": {"value": 20.57, "status": "derived", "source": "13.37 x 1.5385"},
+    "forcerange_Nm": {"value": 4.969, "status": "derived", "source": "3.23 x 1.5385"},
+    "damping_Nm_s_per_rad": {"value": 0.996, "status": "derived", "source": "0.56 x 1.5385 / 0.8649"},
+    "frictionloss_Nm": {"value": 0.068, "status": "assumed", "source": "same as 7.4 V (same gearbox)"},
+    "armature_kg_m2": {"value": 0.027, "status": "assumed", "source": "same as 7.4 V (same gearbox, same 345:1)"},
+    "backlash_deg": {"value": 0.5, "status": "published", "source": "seller: gear backlash <= 0.5 deg"},
+    "backlash_damping_Nm_s_per_rad": {"value": 0.01, "status": "assumed", "source": "same as 7.4 V"},
+    "backlash_armature_kg_m2": {"value": 0.01, "status": "assumed", "source": "same as 7.4 V"},
+    "stall_torque_Nm": {"value": 2.942, "status": "published", "source": "seller: C018 stall 30 kg.cm at 12 V"},
+    "rated_torque_Nm": {"value": 0.981, "status": "published", "source": "seller: C018 rated 10 kg.cm at 12 V"},
+    "no_load_speed_rad_s": {"value": 4.717, "status": "published", "source": "seller: C018 0.222 s/60 deg (45 RPM) -> 1.0472 / 0.222"},
+    "deadband_deg": {"value": 0.088, "status": "assumed", "source": "one encoder step (360/4096)"},
+    "mass_g": {"value": 55.0, "status": "published", "source": "seller: 55 +- 1 g"}
+  },
+
+  "spt5435_guess": {
+    "profile_status": "assumed (seller figures, comparison only)",
+    "what": "SPT5435LV PWM hobby servo (the reference design's servo). Seller figures only; kept for comparison. One speed limit: forcerange = stall, damping = stall / no-load speed, no rate limiter.",
+    "kp_Nm_per_rad": {"value": 39.0, "status": "assumed", "source": "full stall torque at 5 deg error (3.4 / 0.0873)"},
+    "forcerange_Nm": {"value": 3.4, "status": "assumed", "source": "= stall (seller, 6.0 V); the old 0.7 margin is dropped: with it the top speed was 0.7 x 7.48 = 5.2 rad/s"},
+    "damping_Nm_s_per_rad": {"value": 0.4545, "status": "derived", "source": "stall / no-load speed = 3.4 / 7.48"},
+    "frictionloss_Nm": {"value": 0.0, "status": "assumed", "source": "not modelled (unknown)"},
+    "armature_kg_m2": {"value": 0.002, "status": "assumed", "source": "reflected motor + gear inertia at the output"},
+    "backlash_deg": {"value": 0.5, "status": "assumed", "source": "same as the STS3215 (unknown)"},
+    "backlash_damping_Nm_s_per_rad": {"value": 0.01, "status": "assumed", "source": "same as the STS3215"},
+    "backlash_armature_kg_m2": {"value": 0.01, "status": "assumed", "source": "same as the STS3215"},
+    "stall_torque_Nm": {"value": 3.4, "status": "assumed", "source": "seller spec at 6.0 V (Stage 1 prompt), not checked"},
+    "rated_torque_Nm": {"value": 0.85, "status": "assumed", "source": "25 % of stall (sustained-load guide); the seller gives no continuous rating"},
+    "no_load_speed_rad_s": {"value": 7.48, "status": "derived", "source": "seller 0.14 s/60 deg at 6.0 V -> 1.0472 / 0.14"},
+    "deadband_deg": {"value": 0.36, "status": "derived", "source": "4 us of the 500-2500 us range x 180 deg / 2000 us"},
+    "mass_g": {"value": 65.0, "status": "assumed", "source": "sellers say 62-72 g. NOT used by the model: the mass table uses the default profile's 55 g for every profile (model card, known limits)"}
+  }
+}
