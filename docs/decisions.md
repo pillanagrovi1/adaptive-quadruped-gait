@@ -53,7 +53,7 @@ length is dropped. **Status: decided.**
 `configs/robot.json` picks one. Default `sts3215_7v4`: other people have measured this servo (Rhoban's BAM tool, used by Open Duck
 Mini v2), so its numbers are published, not seller guesses. `sts3215_12v` is derived from it (scaled to the 12 V seller figures);
 `spt5435_guess` keeps the old servo for comparison. Servo mass 55 g (seller), total robot 1737.4 g. Every value and its status:
-[model_card.md](model_card.md). **Status: applied.** Supersedes D9 and the servo mass in D5.
+[model_card.md](model_card.md). **Status: applied; the choice of default is superseded by D19.** Supersedes D9 and the servo mass in D5.
 
 **D17 — Setpoint rate limiter removed.** A code review found the Stage 1 servo reached only about 5.2 rad/s, not the 7.48 rad/s it
 claimed. Two limits were stacked: the Python rate limiter (7.48 rad/s), and back-EMF damping 0.45 against a torque clipped to
@@ -66,3 +66,10 @@ bound and the speed limit was counted twice. Now: no limiter; back-EMF is joint 
 **D18 — Learners may see joint feedback.** Allowed: IMU, foot contacts, joint angle, joint speed, joint load (`load_frac`), all from
 `Sensors.observe()`, joint readings one control tick late. Never allowed: true orientation, height, position, terrain (`truth()`).
 Rule in [architecture.md](architecture.md). Supersedes Stage 1's "joint angles are not inputs". **Status: applied.**
+
+**D19 — Default servo profile: `sts3215_12v` (Rahul, 25 Nov 2026).** Standing with the 7.4 V servo used up to 65 % of its rated
+torque (8 of 12 servos above 50 %), before any walking. The 12 V servo has twice the rated torque; standing uses at most 32 % of it.
+`sts3215_7v4` stays as the **measured reference** profile. The 12 V profile is **derived, not measured** (the 7.4 V model scaled to
+the seller's 12 V figures) and is labelled so everywhere. Also decided: keep the torque limit at 3.23 N·m (BAM's fitted model;
+the seller's 1.91 N·m stall is only the warning threshold), keep kp 13.37 (plausible 13.4-18.8), keep the old servo shape in the
+model (a real build needs redrawn mounts), and keep 55 g servo mass for every profile (stated in the model card). **Status: applied.**

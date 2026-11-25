@@ -13,8 +13,8 @@ Gate: peak speed within 15 % of the profile's own no-load speed. **Passed for al
 
 | Profile | Peak speed | Profile's no-load speed | Off by | Time to 95 % | Overshoot |
 |---|---|---|---|---|---|
-| `sts3215_7v4` (default) | 5.53 rad/s | 5.45 (published, seller) | +1.5 % ✅ | 228 ms | 4.6° |
-| `sts3215_12v` | 4.92 rad/s | 4.72 (published, seller) | +4.2 % ✅ | 238 ms | 1.2° |
+| `sts3215_7v4` (measured reference) | 5.53 rad/s | 5.45 (published, seller) | +1.5 % ✅ | 228 ms | 4.6° |
+| `sts3215_12v` (default; **derived**) | 4.92 rad/s | 4.72 (published, seller) | +4.2 % ✅ | 238 ms | 1.2° |
 | `spt5435_guess` | 7.48 rad/s | 7.48 (derived from seller) | 0.0 % ✅ | 138 ms | 0.2° |
 
 Before this stage the old servo reached only about 5.2 rad/s of its 7.48 (the speed limit was counted twice, D17). Now it reaches 7.48.
@@ -24,21 +24,34 @@ Before this stage the old servo reached only about 5.2 rad/s of its 7.48 (the sp
 Gate: the motion starts later by the delay, within one physics step + one control tick (21 ms). **Passed for all three profiles:**
 the start moved by exactly 10, 20, 40, 60 and 80 ms.
 
-### Stand test: default profile (`sts3215_7v4`), 10 s, flat ground, every delay
+### Stand test: default profile `sts3215_12v` (derived, not measured), 10 s, flat ground, every delay
 
+The default is the 12 V servo since D19. Its numbers are **derived** from the measured 7.4 V model, not measured themselves.
 **Gate passed at every delay (10, 20, 40, 60, 80 ms); the numbers are identical at all five** (the command never changes while standing).
 
 | Check | Result | Gate |
 |---|---|---|
-| Highest servo torque | 0.318 N·m = 16.7 % of stall (FR knee servo) | under 50 % of stall ✅ |
-| Against the rated (continuous) torque, 0.49 N·m | up to 65 % (knee servos 62-65 %, hip pitch 57-59 %, hip roll 26-28 %) | ⚠️ **flagged: 8 of 12 servos above 50 % of rated** |
-| Body height | starts at 160.0 mm, sinks 3.7 mm in the first second, then creeps 0.34 mm in 9 s (0.35 mm in 29 s: it settles) | — |
-| Body tilt | at most 0.059° | — |
+| Highest servo torque | 0.316 N·m = 10.8 % of stall (2.94 N·m) (FR knee servo) | under 50 % of stall ✅ |
+| Against the rated (continuous) torque, 0.98 N·m | up to 32.2 % (knee servos 30.8-32.2 %, hip pitch 28.0-29.4 %, hip roll 13.0-13.9 %) | no servo above 50 % of rated ✅ |
+| Body height | starts at 160.0 mm, sinks 2.4 mm in the first second, then creeps 0.30 mm in 9 s (0.30 mm in 29 s: it settles) | — |
+| Body tilt | at most 0.032° | — |
 | Self-collision / anything but the feet on the floor | none / none | none ✅ |
 
-The sink is bigger than in Stage 1 (1.9 mm) because the STS3215's gain is softer (13.4 vs 39 N·m/rad).
-**The flag matters for Stage 2:** just standing, the 7.4 V servos work at about two thirds of their rated torque.
-With the 12 V profile the same stand uses at most 32 % of rated (checked once, at 20 ms).
+Per servo, peak over the 10 s (N·m, % of the 2.94 N·m stall, % of the 0.98 N·m rated torque):
+
+| Leg | hip roll | hip pitch | knee servo |
+|---|---|---|---|
+| FL | 0.136 (4.6 %, 13.9 %) | 0.287 (9.8 %, 29.3 %) | 0.315 (10.7 %, 32.1 %) |
+| FR | 0.135 (4.6 %, 13.7 %) | 0.289 (9.8 %, 29.4 %) | 0.316 (10.8 %, 32.2 %) |
+| RL | 0.129 (4.4 %, 13.1 %) | 0.275 (9.3 %, 28.0 %) | 0.302 (10.3 %, 30.8 %) |
+| RR | 0.128 (4.3 %, 13.0 %) | 0.276 (9.4 %, 28.1 %) | 0.303 (10.3 %, 30.9 %) |
+
+The torques are almost the same as with the 7.4 V servo (same robot, same weight); what changes is the servo's reserve.
+
+#### Reference: the same stand with the measured `sts3215_7v4` profile (first run of this stage, 20 ms; same at every delay)
+
+Max 0.318 N·m = 16.7 % of its 1.91 N·m stall ✅, but **up to 65 % of its 0.49 N·m rated torque: 8 of 12 servos above 50 % of rated** ⚠️.
+Sink 3.7 mm (softer gain, 13.4 vs 20.6 N·m/rad). This flag is why the default moved to 12 V (D19).
 
 | Leg | hip roll | hip pitch | knee servo |
 |---|---|---|---|
@@ -54,8 +67,8 @@ But the knee servo holds the tibia's angle (through the push-rods), so the tibia
 
     hip torque = W x (K - H) - m_tibia g x (K - H) - m_femur g x (femur COM - H)      (Stage 1 used the tibia COM in the middle term)
 
-With that change the hand check matches the simulation to 0.0001 N·m on all four legs (FL hip: hand 0.2889, sim 0.2888; the
-Stage 1 formula gives 0.2968, 2.7 % high). The check runs with gear friction switched off, because friction can hold part of a
+With that change the hand check matches the simulation to 0.0001 N·m on all four legs (default profile, FL hip: hand 0.2875,
+sim 0.2875; the Stage 1 formula gives 0.2953, 2.7 % high). The check runs with gear friction switched off, because friction can hold part of a
 static load. `python3 scripts/stage1_report.py` prints both. The candidate in the prompt (bellcrank and long-rod mass lumped onto
 the femur) cannot explain a hand-vs-sim gap, because both use the same lumped model; it is a model-vs-real-robot question
 (listed in [model_card.md](model_card.md#known-limits)).

@@ -1,7 +1,7 @@
 # How the pieces fit
 
 ```
-          configs/robot.json  (assumed numbers)      configs/servos.json  (servo profiles, default sts3215_7v4)
+          configs/robot.json  (assumed numbers)      configs/servos.json  (servo profiles, default sts3215_12v, derived)
                          |                                     |
    CAD (not in repo) --> scripts/measure_reference.py, mass_table.py, knee_linkage.py
                          |

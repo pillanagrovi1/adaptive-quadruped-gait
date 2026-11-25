@@ -4,7 +4,8 @@ A 12-joint, four-legged robot trots in the MuJoCo simulator and adapts to uneven
 
 **It walks by feel, like a person walking in the dark.** There is no camera. The robot senses the ground only through its legs
 and body: an IMU, the four foot contacts, and each joint's real angle, speed and load, which its feedback servos (Feetech STS3215)
-report. The servo model uses numbers other researchers measured on the STS3215 (Rhoban's BAM, as used by Open Duck Mini v2).
+report. The servo model starts from numbers other researchers measured on the 7.4 V STS3215 (Rhoban's BAM, as used by Open Duck Mini v2);
+the default 12 V servo is derived from it, not measured.
 This is **simulation only** for now: no claims about real hardware.
 The learner is a small fixed-point Q-table in C, small enough to run and learn on a Cortex-M4 microcontroller (STM32F446RE).
 

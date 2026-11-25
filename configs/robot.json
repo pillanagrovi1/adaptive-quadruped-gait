@@ -21,8 +21,8 @@
   "cell_18650_mass_g": {"value": 47.0, "source": "assumed (prompt, 24 Nov)"},
   "push_rod_diameter_mm": {"value": 3.0, "source": "assumed: M3 rod for 5 mm ball rod ends; length = measured ball-centre distance"},
 
-  "servo_profile": {"value": "sts3215_7v4", "options": ["sts3215_7v4", "sts3215_12v", "spt5435_guess"],
-                    "source": "chosen (D16): profiles and their sources are in configs/servos.json"},
+  "servo_profile": {"value": "sts3215_12v", "options": ["sts3215_12v", "sts3215_7v4", "spt5435_guess"],
+                    "source": "chosen (Rahul, D19): sts3215_12v is DERIVED (not measured); sts3215_7v4 is the measured reference. Profiles and sources: configs/servos.json"},
   "servo_travel_deg": {"value": 180.0, "source": "assumed: the reference design's servo travel; the STS3215 turns 360 deg, the linkage limits it"},
   "neutral_offset_rad": {"value": 0.0, "robustness_option": 0.02,
                          "source": "assumed: 0 (encoder servos are calibrated, so neutrals are measured on hardware); +-0.02 rad per joint for robustness tests"},

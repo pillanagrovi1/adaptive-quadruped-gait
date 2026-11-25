@@ -377,37 +377,37 @@
    "part": "spt5435LV",
    "body": "torso",
    "mass_g": 55.0,
-   "rule": "servo (sts3215_7v4), fixed"
+   "rule": "servo (sts3215_12v), fixed"
   },
   {
    "part": "spt5435LV",
    "body": "torso",
    "mass_g": 55.0,
-   "rule": "servo (sts3215_7v4), fixed"
+   "rule": "servo (sts3215_12v), fixed"
   },
   {
    "part": "spt5435LV",
    "body": "torso",
    "mass_g": 55.0,
-   "rule": "servo (sts3215_7v4), fixed"
+   "rule": "servo (sts3215_12v), fixed"
   },
   {
    "part": "spt5435LV",
    "body": "torso",
    "mass_g": 55.0,
-   "rule": "servo (sts3215_7v4), fixed"
+   "rule": "servo (sts3215_12v), fixed"
   },
   {
    "part": "spt5435LV",
    "body": "FL_hip",
    "mass_g": 55.0,
-   "rule": "servo (sts3215_7v4), fixed"
+   "rule": "servo (sts3215_12v), fixed"
   },
   {
    "part": "spt5435LV",
    "body": "FL_hip",
    "mass_g": 55.0,
-   "rule": "servo (sts3215_7v4), fixed"
+   "rule": "servo (sts3215_12v), fixed"
   },
   {
    "part": "servo arm round",
@@ -635,13 +635,13 @@
    "part": "spt5435LV",
    "body": "FR_hip",
    "mass_g": 55.0,
-   "rule": "servo (sts3215_7v4), fixed"
+   "rule": "servo (sts3215_12v), fixed"
   },
   {
    "part": "spt5435LV",
    "body": "FR_hip",
    "mass_g": 55.0,
-   "rule": "servo (sts3215_7v4), fixed"
+   "rule": "servo (sts3215_12v), fixed"
   },
   {
    "part": "servo arm round",
@@ -869,13 +869,13 @@
    "part": "spt5435LV",
    "body": "RL_hip",
    "mass_g": 55.0,
-   "rule": "servo (sts3215_7v4), fixed"
+   "rule": "servo (sts3215_12v), fixed"
   },
   {
    "part": "spt5435LV",
    "body": "RL_hip",
    "mass_g": 55.0,
-   "rule": "servo (sts3215_7v4), fixed"
+   "rule": "servo (sts3215_12v), fixed"
   },
   {
    "part": "servo arm round",
@@ -1109,13 +1109,13 @@
    "part": "spt5435LV",
    "body": "RR_hip",
    "mass_g": 55.0,
-   "rule": "servo (sts3215_7v4), fixed"
+   "rule": "servo (sts3215_12v), fixed"
   },
   {
    "part": "spt5435LV",
    "body": "RR_hip",
    "mass_g": 55.0,
-   "rule": "servo (sts3215_7v4), fixed"
+   "rule": "servo (sts3215_12v), fixed"
   },
   {
    "part": "servo arm round",

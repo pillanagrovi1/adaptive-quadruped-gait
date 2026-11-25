@@ -23,7 +23,9 @@ STATUS = {"measured", "published", "derived", "assumed"}
 
 def test_every_profile_value_has_a_status_and_source():
     allp = json.loads((ROOT / "configs" / "servos.json").read_text())
-    assert config()["servo_profile"]["value"] == "sts3215_7v4"
+    assert config()["servo_profile"]["value"] == "sts3215_12v"            # D19; derived, not measured
+    assert allp["sts3215_12v"]["profile_status"].startswith("derived")
+    assert allp["sts3215_7v4"]["profile_status"].startswith("published")
     for name in PROFILES:
         for k, v in allp[name].items():
             if isinstance(v, dict):

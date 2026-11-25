@@ -7,7 +7,8 @@
   },
 
   "sts3215_7v4": {
-    "what": "Feetech STS3215-C001, 7.4 V, 345:1",
+    "what": "Feetech STS3215-C001, 7.4 V, 345:1. The measured reference profile (BAM / Open Duck).",
+    "profile_status": "published (measured by BAM, used by Open Duck)",
     "kp_Nm_per_rad": {"value": 13.37, "status": "published", "source": "open_duck: <position kp=\"13.37\"> (a commented-out line has 17.12)"},
     "forcerange_Nm": {"value": 3.23, "status": "published", "source": "open_duck: forcerange=\"-3.23 3.23\""},
     "damping_Nm_s_per_rad": {"value": 0.56, "status": "published", "source": "open_duck: joint damping=\"0.56\" (= BAM back-EMF kt^2/R = 1.178^2/2.479 = 0.559)"},
@@ -24,7 +25,8 @@
   },
 
   "sts3215_12v": {
-    "what": "Feetech STS3215-C018, 12 V, 345:1. Derived, not measured: the 7.4 V model scaled to the seller's 12 V figures.",
+    "what": "Feetech STS3215-C018, 12 V, 345:1. DERIVED, NOT MEASURED: the 7.4 V model scaled to the seller's 12 V figures. The default profile (D19).",
+    "profile_status": "derived (not measured)",
     "_formula": "s_tau = stall_12 / stall_7.4 = 30 / 19.5 = 1.5385;  s_w = speed_12 / speed_7.4 = (0.192 s) / (0.222 s) = 0.8649.  kp, forcerange x s_tau;  damping x s_tau / s_w (so that top speed ~ forcerange / damping scales by s_w);  frictionloss, armature, backlash unchanged (same 345:1 gearbox: assumed)",
     "kp_Nm_per_rad": {"value": 20.57, "status": "derived", "source": "13.37 x 1.5385"},
     "forcerange_Nm": {"value": 4.969, "status": "derived", "source": "3.23 x 1.5385"},
@@ -42,6 +44,7 @@
   },
 
   "spt5435_guess": {
+    "profile_status": "assumed (seller figures, comparison only)",
     "what": "SPT5435LV PWM hobby servo (the reference design's servo). Seller figures only; kept for comparison. One speed limit: forcerange = stall, damping = stall / no-load speed, no rate limiter.",
     "kp_Nm_per_rad": {"value": 39.0, "status": "assumed", "source": "full stall torque at 5 deg error (3.4 / 0.0873)"},
     "forcerange_Nm": {"value": 3.4, "status": "assumed", "source": "= stall (seller, 6.0 V); the old 0.7 margin is dropped: with it the top speed was 0.7 x 7.48 = 5.2 rad/s"},
@@ -55,6 +58,6 @@
     "rated_torque_Nm": {"value": 0.85, "status": "assumed", "source": "25 % of stall (sustained-load guide); the seller gives no continuous rating"},
     "no_load_speed_rad_s": {"value": 7.48, "status": "derived", "source": "seller 0.14 s/60 deg at 6.0 V -> 1.0472 / 0.14"},
     "deadband_deg": {"value": 0.36, "status": "derived", "source": "4 us of the 500-2500 us range x 180 deg / 2000 us"},
-    "mass_g": {"value": 65.0, "status": "assumed", "source": "sellers say 62-72 g"}
+    "mass_g": {"value": 65.0, "status": "assumed", "source": "sellers say 62-72 g. NOT used by the model: the mass table uses the default profile's 55 g for every profile (model card, known limits)"}
   }
 }

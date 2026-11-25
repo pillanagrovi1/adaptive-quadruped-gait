@@ -118,11 +118,11 @@ Not checked: parts hitting each other inside these ranges (no detailed collision
 
 ## Masses
 
-Total **1737.4 g** (with STS3215 servos, the default profile; Stage 1 had 1857.4 g with 65 g servos). Every part, its rule and its body: `models/mass_measured.json`. Every density: `configs/robot.json`.
+Total **1737.4 g** (with 55 g STS3215 servos; Stage 1 had 1857.4 g with 65 g servos). Every part, its rule and its body: `models/mass_measured.json`. Every density: `configs/robot.json`.
 
 | Group | Count | Mass (g) | Rule |
 |---|---|---|---|
-| Servos (STS3215, default profile) | 12 | 660.0 | 55 g each (seller: 55 ± 1 g). The CAD is drawn for the SPT5435LV; its shape and position are kept |
+| Servos (STS3215; 55 g for every profile, see the model card) | 12 | 660.0 | 55 g each (seller: 55 ± 1 g). The CAD is drawn for the SPT5435LV; its shape and position are kept |
 | Battery packs (3 x 18650 + printed case and cap) | 2 | 314.7 | 47 g per cell + case STL x PLA |
 | Screws | 109 | 110.2 | STEP volume x steel |
 | Printed parts (PLA; TPU feet inside the 4 tibias) | 28 | 312.1 | STL volume x density x 0.6 infill. All printed STLs by count (one-piece tibias, battery cases included) = 463.8 cm3 solid |
@@ -140,6 +140,7 @@ Not counted: wires and connectors (not in the CAD).
 
 ## Servo, sensors, contact
 
-Servos: named profiles in `configs/servos.json` (default `sts3215_7v4`, the Feetech STS3215 at 7.4 V, from Open Duck Mini v2 / BAM).
+Servos: named profiles in `configs/servos.json`. Default `sts3215_12v` (Feetech STS3215 at 12 V, **derived** from the 7.4 V model);
+`sts3215_7v4` is the measured reference (Open Duck Mini v2 / BAM).
 Everything else in `configs/robot.json`. Every number, with its status (measured / published / derived / assumed): [model_card.md](model_card.md).
 How the servo model works: [study/stage1_1.md](study/stage1_1.md).
