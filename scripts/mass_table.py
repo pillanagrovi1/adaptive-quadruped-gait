@@ -7,7 +7,7 @@ models/mass_measured.json, which scripts/make_model.py turns into the MJCF.
 Rules (every density and purchased-part mass is in configs/robot.json with its source):
   printed parts     STL volume x density x infill factor (PLA; the foot is TPU)
   aluminium plates  DXF net area x thickness (from the drawing's note) x density
-  servos, cells     fixed mass each
+  servos, cells     fixed mass each (servo: the default profile, configs/servos.json)
   everything else   STEP volume x an assumed density for its material
 Each part's mass goes into the body it moves with; its inertia comes from the STEP solid,
 scaled from the solid's volume to its mass (so a part is treated as uniform).
@@ -32,6 +32,8 @@ from quad import stl  # noqa: E402
 
 ROOT = Path(__file__).resolve().parents[1]
 CFG = json.loads((ROOT / "configs" / "robot.json").read_text())
+SERVO_PROFILE = CFG["servo_profile"]["value"]
+SERVO_MASS_G = json.loads((ROOT / "configs" / "servos.json").read_text())[SERVO_PROFILE]["mass_g"]["value"]
 OUT = ROOT / "models" / "mass_measured.json"
 STL_DIR = mr.REF / "3dp parts_stl_"
 
@@ -83,8 +85,8 @@ def part_mass(p, vol_mm3, plates):
             m = v * D["PLA"]["value"] * infill + vf * D["TPU"]["value"] * infill
             return m, f"STL {v:.2f} cm3 PLA + foot {vf:.2f} cm3 TPU, x infill {infill}"
         return v * D["PLA"]["value"] * infill, f"STL {v:.2f} cm3 x PLA x infill {infill}"
-    if d == "spt5435LV":
-        return CFG["servo"]["mass_g"]["value"], "servo, fixed"
+    if d == "spt5435LV":   # the CAD's servo; its mass is the default profile's servo
+        return SERVO_MASS_G, f"servo ({SERVO_PROFILE}), fixed"
     if d == "3x18650":
         v = stl_volume_cm3("3x18650case_2pcs") + stl_volume_cm3("3x18650caseCap_2pcs")
         cell = CFG["cell_18650_mass_g"]["value"]

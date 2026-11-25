@@ -12,7 +12,7 @@ import numpy as np
 import pytest
 
 from quad.model import LEGS, SERVOS, config, load
-from quad.servo import ServoBank, joints_to_servos, servos_to_joints
+from quad.servo import ServoBank, joints_to_servos, profile, servos_to_joints
 from quad.stand import stand_test
 
 ROOT = Path(__file__).resolve().parents[2]
@@ -70,9 +70,8 @@ def test_total_mass_matches_table(model):
     assert abs(parts_g - table["total_g"]) < 0.5
 
 
-def test_servo_limits_from_config(model):
-    sv = config()["servo"]
-    frc = sv["stall_torque_Nm"]["value"] * sv["torque_margin"]["value"]
+def test_servo_limits_from_profile(model):
+    frc = profile()["forcerange_Nm"]
     assert np.allclose(model.actuator_forcerange, [[-frc, frc]] * 12, atol=1e-3)
     assert all(math.degrees(r[1] - r[0]) <= 180.0 + 0.01 for r in model.actuator_ctrlrange)   # ranges stored to 1e-4 rad
 
@@ -83,18 +82,26 @@ def test_knee_servo_is_hip_plus_knee():
     assert np.isclose(joints_to_servos(q)[2], q[1] + q[2])
 
 
-def test_servo_rate_and_deadband(model):
+def test_servo_deadband_no_rate_limit(model):
     d = mujoco.MjData(model)
     sb = ServoBank(model, delay_ms=0)
     sb.reset(np.zeros(12))
     sb.command(np.full(12, 0.5))
     sb.step(d)
-    assert np.allclose(sb.setpoint, sb.max_step)                 # rate limited
+    assert np.allclose(d.ctrl, 0.5)                              # no rate limiter (D17): the whole step at once
     sb.reset(np.zeros(12))
-    sb.command(np.full(12, math.radians(0.2)))                   # inside the 0.36 deg deadband
+    sb.command(np.full(12, math.radians(sb.prof["deadband_deg"]) / 2))   # inside the deadband
     for _ in range(5):
         sb.step(d)
-    assert np.allclose(sb.setpoint, 0)
+    assert np.allclose(sb.received, 0)
+
+
+def test_neutral_offset(model):
+    d = mujoco.MjData(model)
+    sb = ServoBank(model, delay_ms=0, neutral_offset=0.02)
+    sb.reset(np.zeros(12))
+    sb.step(d)
+    assert np.allclose(d.ctrl, 0.02)
 
 
 def test_delay_buffer(model):
@@ -103,7 +110,7 @@ def test_delay_buffer(model):
     sb.reset(np.zeros(12))
     sb.command(np.full(12, 0.01))
     steps = 0
-    while np.allclose(sb.setpoint, 0):
+    while np.allclose(sb.received, 0):
         sb.step(d)
         steps += 1
     assert steps == sb.delay_steps + 1 == 21
@@ -111,8 +118,10 @@ def test_delay_buffer(model):
 
 @pytest.mark.parametrize("delay_ms", config()["delay_ms"]["sweep"])
 def test_stand_10s(delay_ms):
-    r = stand_test(delay_ms, seconds=10.0)
+    r = stand_test(delay_ms, seconds=10.0)          # default servo profile
+    assert r["servo_profile"] == config()["servo_profile"]["value"]
     assert max(r["torque_max_frac_stall"].values()) < 0.5
+    assert len(r["torque_max_frac_rated"]) == 12    # reported; above 0.5 is flagged in docs/results.md, not failed
     assert not r["self_collisions"]
     assert not r["non_foot_floor_contacts"]
     assert abs(r["height_drift_1s_to_end_mm"]) < 2.0

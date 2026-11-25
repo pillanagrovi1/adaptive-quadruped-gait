@@ -60,7 +60,7 @@ Frames. The STEP uses x = left, y = up, z = forward. The model uses **x = forwar
 | `body_length_mm` | 306.3 | mm | front part to rear part, STEP |
 | `body_width_mm` | 114.0 | mm | side panels ("gövde"), STEP |
 | `body_height_mm` | 56.0 | mm | bottom plate to top plate, STEP (model box: 56.7) |
-| `total_mass_g` | 1857.4 | g | table below |
+| `total_mass_g` | 1737.4 | g | table below |
 
 Other measured numbers:
 
@@ -118,11 +118,11 @@ Not checked: parts hitting each other inside these ranges (no detailed collision
 
 ## Masses
 
-Total **1857.4 g**. Every part, its rule and its body: `models/mass_measured.json`. Every density: `configs/robot.json`.
+Total **1737.4 g** (with STS3215 servos, the default profile; Stage 1 had 1857.4 g with 65 g servos). Every part, its rule and its body: `models/mass_measured.json`. Every density: `configs/robot.json`.
 
 | Group | Count | Mass (g) | Rule |
 |---|---|---|---|
-| Servos SPT5435LV | 12 | 780.0 | 65 g each (sellers: 62-72 g) |
+| Servos (STS3215, default profile) | 12 | 660.0 | 55 g each (seller: 55 ± 1 g). The CAD is drawn for the SPT5435LV; its shape and position are kept |
 | Battery packs (3 x 18650 + printed case and cap) | 2 | 314.7 | 47 g per cell + case STL x PLA |
 | Screws | 109 | 110.2 | STEP volume x steel |
 | Printed parts (PLA; TPU feet inside the 4 tibias) | 28 | 312.1 | STL volume x density x 0.6 infill. All printed STLs by count (one-piece tibias, battery cases included) = 463.8 cm3 solid |
@@ -132,14 +132,14 @@ Total **1857.4 g**. Every part, its rule and its body: `models/mass_measured.jso
 | Bearings, rod ends, horns | 52 | 50.6 | STEP volume x steel / POM / nylon / aluminium |
 | Orange Pi Zero, fan, battery meter, switch | 4 | 37.6 | STEP volume x assumed density |
 
-Per body (g): torso 948.8; each leg: hip module 155.8-159.0, femur 41.6-42.3, tibia 27.1-27.6.
-Centre of mass: 7.2 mm behind the body centre, so the front feet carry 51.4 % of the weight.
+Per body (g): torso 908.8; each leg: hip module 135.8-139.0, femur 41.6-42.3, tibia 27.1-27.6.
+Centre of mass: 7.7 mm behind the body centre, so the front feet carry 51.2 % of the weight.
 Each body's inertia comes from its parts' STEP solids, each scaled to its mass (so each part counts as uniform).
 
 Not counted: wires and connectors (not in the CAD).
 
 ## Servo, sensors, contact
 
-All in `configs/robot.json` with sources. In short: stall torque 3.4 N.m at 6.0 V, torque limit 0.7 x stall, speed 7.48 rad/s,
-deadband 0.36 deg, back-EMF damping 0.45 N.m.s/rad, command delay 20 ms (also run at 10, 40, 60, 80), IMU noise and bias,
-foot friction 0.9, physics step 1 ms, control 50 Hz. See [the study page](study/stage1.md) for how the servo model works.
+Servos: named profiles in `configs/servos.json` (default `sts3215_7v4`, the Feetech STS3215 at 7.4 V, from Open Duck Mini v2 / BAM).
+Everything else in `configs/robot.json`. Every number, with its status (measured / published / derived / assumed): [model_card.md](model_card.md).
+How the servo model works: [study/stage1_1.md](study/stage1_1.md).

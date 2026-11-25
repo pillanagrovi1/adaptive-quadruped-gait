@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Stage 1 gate: stand test at every delay value, plus the hand check of the static torques.
+"""Stage 1 gate (default servo profile): stand test at every delay value, plus the hand check of the static torques.
 
 Writes results/stage1_stand.json (the numbers in docs/results.md).
 
@@ -31,6 +31,10 @@ OUT = ROOT / "results" / "stage1_stand.json"
 def hand_check() -> dict:
     cfg = config()
     m, d = load()
+    # gear friction (frictionloss) can hold part of a static load, so the sim would not match a
+    # friction-free hand calculation; switch it off for this check only
+    m.dof_frictionloss[:] = 0
+    m.tendon_frictionloss[:] = 0
     q = stand_pose(m)
     place(m, d, q)
     g = -m.opt.gravity[2]
@@ -68,8 +72,11 @@ def hand_check() -> dict:
             "W_quarter_N": W4, "W_front_rear_N": Wfr, "W_sim_N": fz,
             "hand_hip_Nm": W4 * abs(K[0] - H[0]), "hand_knee_Nm": W4 * abs(F[0] - K[0]),
             "hand_fr_hip_Nm": Wfr * abs(K[0] - H[0]), "hand_fr_knee_Nm": Wfr * abs(F[0] - K[0]),
-            # refined: the foot force W_sim, minus the leg's own weight on its lever
-            "refined_hip_Nm": abs(fz * (K[0] - H[0]) - mt * g * (ct[0] - H[0]) - mf * g * (cf[0] - H[0])),
+            # refined: the foot force W_sim, minus the leg's own weight on its lever. The knee servo holds the
+            # tibia's angle (push-rods), so the hip servo feels the tibia's weight at the knee K, not at its centre
+            # of mass (Stage 1 used ct here: that was the 2.5 % gap, docs/results.md)
+            "refined_hip_Nm": abs(fz * (K[0] - H[0]) - mt * g * (K[0] - H[0]) - mf * g * (cf[0] - H[0])),
+            "refined_hip_stage1_formula_Nm": abs(fz * (K[0] - H[0]) - mt * g * (ct[0] - H[0]) - mf * g * (cf[0] - H[0])),
             "refined_knee_Nm": abs(fz * (F[0] - K[0]) - mt * g * (ct[0] - K[0])),
             "sim_hip_Nm": float(abs(tau[i, 1])), "sim_knee_Nm": float(abs(tau[i, 2])), "sim_roll_Nm": float(abs(tau[i, 0])),
         }
@@ -78,21 +85,21 @@ def hand_check() -> dict:
 
 def main():
     cfg = config()
-    stall = cfg["servo"]["stall_torque_Nm"]["value"]
-    sus = cfg["servo"]["sustained_fraction"]["value"]
     runs = [stand_test(dl) for dl in cfg["delay_ms"]["sweep"]]
+    stall, rated = runs[0]["stall_torque_Nm"], runs[0]["rated_torque_Nm"]
     for r in runs:
         r["gate_pass"] = (max(r["torque_max_frac_stall"].values()) < 0.5 and not r["self_collisions"]
                           and not r["non_foot_floor_contacts"])
-        r["above_sustained_guide"] = [k for k, v in r["torque_after_1s_frac_stall"].items() if v > sus]
+        r["above_half_rated"] = [k for k, v in r["torque_max_frac_rated"].items() if v > 0.5]
     hc = hand_check()
     OUT.parent.mkdir(parents=True, exist_ok=True)
-    OUT.write_text(json.dumps({"stall_torque_Nm": stall, "sustained_fraction": sus, "runs": runs, "hand_check": hc}, indent=1))
+    OUT.write_text(json.dumps({"servo_profile": runs[0]["servo_profile"], "stall_torque_Nm": stall,
+                               "rated_torque_Nm": rated, "runs": runs, "hand_check": hc}, indent=1))
     for r in runs:
         fr = r["torque_max_frac_stall"]
         print(f"delay {r['delay_ms']:4.0f} ms: max {max(fr.values()):.3f} of stall ({max(fr, key=fr.get)}), "
               f"after 1 s {max(r['torque_after_1s_frac_stall'].values()):.3f}, settle {r['settle_drop_mm']:.2f} mm, "
-              f"drift {r['height_drift_1s_to_end_mm']:+.4f} mm, tilt {r['tilt_max_deg']:.3f} deg, "
+              f"of rated {max(r['torque_max_frac_rated'].values()):.3f}, drift {r['height_drift_1s_to_end_mm']:+.4f} mm, tilt {r['tilt_max_deg']:.3f} deg, "
               f"self-collisions {len(r['self_collisions'])}, pass {r['gate_pass']}")
     print(f"mass {hc['mass_kg']:.4f} kg, COM x {hc['com_x_mm']:+.1f} mm, front share {hc['front_share']:.3f}")
     for leg, v in hc["legs"].items():

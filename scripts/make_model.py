@@ -21,6 +21,8 @@ GEOM = json.loads((M / "geometry_measured.json").read_text())
 MASS = json.loads((M / "mass_measured.json").read_text())
 LINK = json.loads((M / "knee_linkage.json").read_text())
 CFG = json.loads((ROOT / "configs" / "robot.json").read_text())
+SERVO = {k: v["value"] for k, v in json.loads((ROOT / "configs" / "servos.json").read_text())[CFG["servo_profile"]["value"]].items()
+         if isinstance(v, dict) and "value" in v}   # the default profile; quad.model.load() can swap it
 OUT = M / "quadruped.xml"
 
 FEMUR_RADIUS_MM = 10.0   # femur STL is 20 x 23 mm in section
@@ -62,13 +64,12 @@ def inertial(name, ind):
 
 
 def main():
-    sv = CFG["servo"]
-    stall = sv["stall_torque_Nm"]["value"]
-    frc = stall * sv["torque_margin"]["value"]
-    kp = sv["kp_Nm_per_rad"]["value"]
-    damp = sv["damping_Nm_s_per_rad"]["value"]
-    arm = sv["armature_kg_m2"]["value"]
-    half = math.radians(sv["travel_deg"]["value"] / 2)
+    frc = SERVO["forcerange_Nm"]
+    kp = SERVO["kp_Nm_per_rad"]
+    damp = SERVO["damping_Nm_s_per_rad"]
+    arm = SERVO["armature_kg_m2"]
+    fl = SERVO["frictionloss_Nm"]
+    half = math.radians(CFG["servo_travel_deg"]["value"] / 2)
     margin = math.radians(CFG["joint_limit_margin_deg"]["value"])
     mu = CFG["foot_friction"]["value"]
     tb = MASS["bodies"]["torso"]["aabb_mm"]
@@ -89,7 +90,7 @@ def main():
     w('    <material name="foot" rgba="0.1 0.1 0.1 1"/>')
     w('  </asset>')
     w('  <default>')
-    w(f'    <joint damping="{damp}" armature="{arm}"/>')
+    w(f'    <joint damping="{damp}" armature="{arm}" frictionloss="{fl}"/>')
     w('    <geom contype="1" conaffinity="1" condim="3" mass="0"/>')
     w(f'    <position kp="{kp}" forcerange="{-frc:.4g} {frc:.4g}" inheritrange="1"/>')
     w('  </default>')
@@ -133,7 +134,7 @@ def main():
         # knee dead points: tibia lever parallel to the femur (q = lever offset, offset - 180 deg)
         off = -math.radians(180.0 + g["tibia_lever_to_foot_deg"])         # about -1.5 deg (checked with knee_linkage.solve)
         klo, khi = off - math.pi + margin, off - margin
-        w(f'            <joint name="{leg}_knee" axis="0 1 0" range="{klo:.4f} {khi:.4f}" damping="0" armature="0"/>')
+        w(f'            <joint name="{leg}_knee" axis="0 1 0" range="{klo:.4f} {khi:.4f}" damping="0" armature="0" frictionloss="0"/>')
         Fc = [x / 1000 for x in P["Fc"]]
         r = g["foot_radius_mm"] / 1000
         w(f'            <geom name="{leg}_tibia" type="capsule" fromto="0 0 0 {f(Fc[0], Fc[1], Fc[2] + TIBIA_RADIUS_MM / 1000 + r)}" '
@@ -151,7 +152,7 @@ def main():
     for leg, g in GEOM["legs"].items():
         lo, hi = g["_knee_servo_range"]
         # the knee servo sets the tibia's pitch (hip pitch + knee): two parallelogram push-rods, 1:1 (docs/robot.md)
-        w(f'    <fixed name="{leg}_knee_servo" range="{lo:.4f} {hi:.4f}" damping="{damp}" armature="{arm}">')
+        w(f'    <fixed name="{leg}_knee_servo" range="{lo:.4f} {hi:.4f}" damping="{damp}" armature="{arm}" frictionloss="{fl}">')
         w(f'      <joint joint="{leg}_hip_pitch" coef="1"/>')
         w(f'      <joint joint="{leg}_knee" coef="1"/>')
         w('    </fixed>')

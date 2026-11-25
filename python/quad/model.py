@@ -1,7 +1,9 @@
 """Load models/quadruped.xml and name its parts.
 
     from quad.model import load, LEGS
-    m, d = load()
+    m, d = load()                          # default servo profile (configs/robot.json)
+    m, d = load("spt5435_guess")           # another profile from configs/servos.json
+    m, d = load(backlash=True)             # with gear backlash
 """
 from __future__ import annotations
 
@@ -23,8 +25,14 @@ def config() -> dict:
     return json.loads(CONFIG.read_text())
 
 
-def load(xml: Path = XML) -> tuple[mujoco.MjModel, mujoco.MjData]:
-    m = mujoco.MjModel.from_xml_path(str(xml))
+def load(servo_profile: str | None = None, backlash: bool | None = None,
+         xml: Path = XML) -> tuple[mujoco.MjModel, mujoco.MjData]:
+    """The robot with the servos of `servo_profile` (default: configs/robot.json)."""
+    from .servo import apply_profile, profile
+    spec = mujoco.MjSpec.from_file(str(xml))
+    bl = config()["backlash"]["value"] if backlash is None else backlash
+    apply_profile(spec, profile(servo_profile), backlash=bl)
+    m = spec.compile()
     return m, mujoco.MjData(m)
 
 

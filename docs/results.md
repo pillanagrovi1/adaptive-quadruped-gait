@@ -1,6 +1,73 @@
 # Results
 
+## Stage 1.1: feedback servos (25 Nov 2026)
+
+Reproduce: `python3 scripts/stage1_1_report.py` (writes `results/stage1_1.json` and the plot). CI runs the same tests
+(`python/tests/test_stage1_1.py`, `test_model.py`). Simulation only; every number below was measured in this repo's simulation.
+
+![60 deg step for the three servo profiles](img/stage1_1_step.png)
+
+### Servo step test: one servo in the air, no gravity, no load, a 60° step
+
+Gate: peak speed within 15 % of the profile's own no-load speed. **Passed for all three.**
+
+| Profile | Peak speed | Profile's no-load speed | Off by | Time to 95 % | Overshoot |
+|---|---|---|---|---|---|
+| `sts3215_7v4` (default) | 5.53 rad/s | 5.45 (published, seller) | +1.5 % ✅ | 228 ms | 4.6° |
+| `sts3215_12v` | 4.92 rad/s | 4.72 (published, seller) | +4.2 % ✅ | 238 ms | 1.2° |
+| `spt5435_guess` | 7.48 rad/s | 7.48 (derived from seller) | 0.0 % ✅ | 138 ms | 0.2° |
+
+Before this stage the old servo reached only about 5.2 rad/s of its 7.48 (the speed limit was counted twice, D17). Now it reaches 7.48.
+
+### Delay test: the same step with a command delay
+
+Gate: the motion starts later by the delay, within one physics step + one control tick (21 ms). **Passed for all three profiles:**
+the start moved by exactly 10, 20, 40, 60 and 80 ms.
+
+### Stand test: default profile (`sts3215_7v4`), 10 s, flat ground, every delay
+
+**Gate passed at every delay (10, 20, 40, 60, 80 ms); the numbers are identical at all five** (the command never changes while standing).
+
+| Check | Result | Gate |
+|---|---|---|
+| Highest servo torque | 0.318 N·m = 16.7 % of stall (FR knee servo) | under 50 % of stall ✅ |
+| Against the rated (continuous) torque, 0.49 N·m | up to 65 % (knee servos 62-65 %, hip pitch 57-59 %, hip roll 26-28 %) | ⚠️ **flagged: 8 of 12 servos above 50 % of rated** |
+| Body height | starts at 160.0 mm, sinks 3.7 mm in the first second, then creeps 0.34 mm in 9 s (0.35 mm in 29 s: it settles) | — |
+| Body tilt | at most 0.059° | — |
+| Self-collision / anything but the feet on the floor | none / none | none ✅ |
+
+The sink is bigger than in Stage 1 (1.9 mm) because the STS3215's gain is softer (13.4 vs 39 N·m/rad).
+**The flag matters for Stage 2:** just standing, the 7.4 V servos work at about two thirds of their rated torque.
+With the 12 V profile the same stand uses at most 32 % of rated (checked once, at 20 ms).
+
+| Leg | hip roll | hip pitch | knee servo |
+|---|---|---|---|
+| FL | 0.136 N·m (7.1 % stall, 28 % rated) | 0.289 (15.1 %, 59 %) | 0.317 (16.6 %, 65 %) |
+| FR | 0.135 (7.0 %, 28 %) | 0.290 (15.2 %, 59 %) | 0.318 (16.7 %, 65 %) |
+| RL | 0.129 (6.8 %, 26 %) | 0.277 (14.5 %, 57 %) | 0.305 (16.0 %, 62 %) |
+| RR | 0.128 (6.7 %, 26 %) | 0.279 (14.6 %, 57 %) | 0.307 (16.0 %, 63 %) |
+
+### The 2.5 % hip-torque gap from Stage 1: found
+
+Stage 1's refined hand check put the tibia's weight on the hip servo at the tibia's own centre of mass.
+But the knee servo holds the tibia's angle (through the push-rods), so the tibia's weight reaches the hip servo **at the knee**:
+
+    hip torque = W x (K - H) - m_tibia g x (K - H) - m_femur g x (femur COM - H)      (Stage 1 used the tibia COM in the middle term)
+
+With that change the hand check matches the simulation to 0.0001 N·m on all four legs (FL hip: hand 0.2889, sim 0.2888; the
+Stage 1 formula gives 0.2968, 2.7 % high). The check runs with gear friction switched off, because friction can hold part of a
+static load. `python3 scripts/stage1_report.py` prints both. The candidate in the prompt (bellcrank and long-rod mass lumped onto
+the femur) cannot explain a hand-vs-sim gap, because both use the same lumped model; it is a model-vs-real-robot question
+(listed in [model_card.md](model_card.md#known-limits)).
+
+### Joint feedback
+
+`Sensors.observe()` now returns joint angle, speed and `load_frac` (12 each), one control tick late. Tests check the shapes,
+the units, the 4096-step quantisation, the one-tick delay, and that no `truth()` value appears in `observe()`.
+
 ## Stage 1: the robot stands (24 Nov 2026)
+
+These are the Stage 1 numbers, with the old servo model (SPT5435LV, 65 g servos, rate limiter). Superseded by Stage 1.1 above; kept as a record.
 
 ![The model in its standing pose, seen roughly from where photo 20201107_124135.jpg was taken](img/stage1_side.png)
 
@@ -50,7 +117,7 @@ The foot pushes up with force W. The knee servo turns the tibia about the knee; 
 Why the quick estimate is off, and by how much:
 1. **Front/rear split** (±4 %): the centre of mass is 7.2 mm behind the body centre, but the front hips are 20 mm closer to it than the rear hips. The front feet carry 51.4 %.
 2. **The legs' own weight** (hip −8 %, knee −2.5 %): the foot force W includes the weight of the femur (42 g) and tibia (27 g), which pull the other way on shorter levers. The knee only feels the tibia; the hip feels both.
-3. With both corrections the **knee matches the simulation exactly** (to 0.001 N.m). The **hip is still 0.008 N.m (2.5 %) above** the simulation. The feet have no sideways force (checked: 0.000 N), so that is not it. **Not explained yet.**
+3. With both corrections the **knee matches the simulation exactly** (to 0.001 N.m). The **hip is still 0.008 N.m (2.5 %) above** the simulation. The feet have no sideways force (checked: 0.000 N), so that is not it. **Explained in Stage 1.1** (above).
 
 The hip roll servos hold 0.135-0.146 N.m: the feet stand 39 mm outboard of the roll axes. No hand check was asked for these.
 
@@ -67,4 +134,3 @@ These are QEMU instruction counts, not timing on a real chip.
 |---|---|---|
 | corridor table (6 cells x 2 actions) | 516 | 371.6 |
 | corridor table + Q(lambda) traces | 1032 | 1068.8 |
-| 4 inputs x 6 bins x 7 actions (a size Stage 4 might use; a guess) | 36776 | 801.1 |

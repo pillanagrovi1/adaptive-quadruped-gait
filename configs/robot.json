@@ -21,21 +21,12 @@
   "cell_18650_mass_g": {"value": 47.0, "source": "assumed (prompt, 24 Nov)"},
   "push_rod_diameter_mm": {"value": 3.0, "source": "assumed: M3 rod for 5 mm ball rod ends; length = measured ball-centre distance"},
 
-  "servo": {
-    "model": "SPT5435LV",
-    "mass_g": {"value": 65.0, "source": "assumed: sellers say 62-72 g (prompt, 24 Nov)"},
-    "supply_V": {"value": 6.0, "source": "assumed (prompt)"},
-    "stall_torque_Nm": {"value": 3.4, "source": "seller spec at 6.0 V, not measured (prompt)"},
-    "torque_margin": {"value": 0.7, "source": "assumed (prompt): forcerange = margin x stall"},
-    "speed_s_per_60deg": {"value": 0.14, "source": "seller spec at 6.0 V, not measured (prompt)"},
-    "max_rate_rad_s": {"value": 7.48, "source": "derived: (60 deg = 1.047 rad) / 0.14 s"},
-    "deadband_deg": {"value": 0.36, "source": "derived: 4 us of the 500-2500 us range x 180 deg / 2000 us (prompt)"},
-    "travel_deg": {"value": 180.0, "source": "seller spec (prompt)"},
-    "kp_Nm_per_rad": {"value": 39.0, "source": "assumed: full stall torque at 5 deg error (3.4 / 0.0873)"},
-    "damping_Nm_s_per_rad": {"value": 0.45, "source": "estimate (prompt): back-EMF ~ stall torque / no-load speed = 3.4 / 7.48"},
-    "armature_kg_m2": {"value": 0.002, "source": "assumed: reflected motor + gear inertia at the output"},
-    "sustained_fraction": {"value": 0.25, "source": "assumed (prompt): sustained-load guide, 25 % of stall; the seller gives no continuous rating"}
-  },
+  "servo_profile": {"value": "sts3215_7v4", "options": ["sts3215_7v4", "sts3215_12v", "spt5435_guess"],
+                    "source": "chosen (D16): profiles and their sources are in configs/servos.json"},
+  "servo_travel_deg": {"value": 180.0, "source": "assumed: the reference design's servo travel; the STS3215 turns 360 deg, the linkage limits it"},
+  "neutral_offset_rad": {"value": 0.0, "robustness_option": 0.02,
+                         "source": "assumed: 0 (encoder servos are calibrated, so neutrals are measured on hardware); +-0.02 rad per joint for robustness tests"},
+  "backlash": {"value": false, "source": "chosen: off by default; on = a second hinge per servo with the profile's backlash range"},
 
   "delay_ms": {"value": 20, "sweep": [10, 20, 40, 60, 80],
                "source": "guess (prompt): Mini Pupper 2 measured 76 ms (Weddington et al., arXiv 2607.26434)"},
@@ -45,6 +36,14 @@
     "gyro_bias_rad_s": {"value": 0.01, "source": "assumed constant bias per axis, drawn once per episode"},
     "accel_noise_m_s2": {"value": 0.05, "source": "assumed"},
     "accel_bias_m_s2": {"value": 0.1, "source": "assumed constant bias per axis, drawn once per episode"}
+  },
+
+  "joint_sensors": {
+    "angle_steps_per_turn": {"value": 4096, "source": "published: 12-bit encoder, ~0.088 deg per step (seller page, configs/servos.json)"},
+    "angle_noise_rad": {"value": 0.0015, "source": "assumed: ~1 encoder step of white noise"},
+    "speed_noise_rad_s": {"value": 0.05, "source": "assumed"},
+    "load_noise_frac": {"value": 0.02, "source": "assumed: 2 % of stall"},
+    "read_delay_ticks": {"value": 1, "source": "assumed: a 12-servo bus read takes ~2-3 ms at 1 Mbps (calculated, not measured), so one 20 ms control tick is a safe default"}
   },
 
   "foot_friction": {"value": 0.9, "source": "assumed: TPU on a flat floor, 0.8-1.0 (prompt)"},

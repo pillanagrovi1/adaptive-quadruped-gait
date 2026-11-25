@@ -27,6 +27,8 @@ Ours is written by `scripts/make_model.py` from measured numbers. Never edit it 
 
 ## 2. How a hobby servo is modelled
 
+> **Superseded in Stage 1.1:** the servo is now the Feetech STS3215 with a published model, and the speed limit below was removed (it was counted twice). See [stage1_1.md](stage1_1.md).
+
 ```
  you send an angle ──> [ wait: delay ] ──> [ ignore tiny changes: deadband ] ──> [ move at most 7.48 rad/s ] ──> target
                                                                                                                   │
