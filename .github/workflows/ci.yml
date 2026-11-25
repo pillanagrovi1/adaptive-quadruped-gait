@@ -21,7 +21,9 @@ jobs:
           make build/test_core CFLAGS="-O1 -g -std=c11 -fsanitize=undefined -fno-sanitize-recover=all"
           ./build/test_core
           make clean
-      - name: Host build and tests (includes the corridor check, C == Python bit for bit)
+      - name: The committed MJCF matches the measured numbers
+        run: python3 scripts/make_model.py --check
+      - name: Host build and tests (corridor check C == Python; robot model; 10 s stand test at every delay)
         run: make test
       - name: Cortex-M4 build, QEMU run, host == M4 bit-exact check
         run: |

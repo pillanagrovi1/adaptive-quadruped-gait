@@ -1,0 +1,55 @@
+{
+  "_note": "Every number the model uses that is not measured from the CAD. 'source' says where it comes from; 'assumed' means a guess.",
+
+  "printed_infill_factor": {"value": 0.6, "source": "assumed: printed part mass / solid mass (walls + ~20-30 % infill)"},
+  "density_g_cm3": {
+    "PLA": {"value": 1.24, "source": "assumed (prompt, 24 Nov)"},
+    "TPU": {"value": 1.21, "source": "assumed"},
+    "aluminium": {"value": 2.70, "source": "assumed (pure aluminium)"},
+    "steel": {"value": 7.85, "source": "assumed"},
+    "POM": {"value": 1.41, "source": "assumed: rod-end housings taken as acetal"},
+    "nylon": {"value": 1.15, "source": "assumed: plastic servo horns taken as nylon"}
+  },
+  "electronics_density_g_cm3": {
+    "Orange Pi Zero": {"value": 1.85, "source": "assumed: STEP volume x PCB-like density"},
+    "dc-dc SZBK07": {"value": 2.70, "source": "assumed: STEP volume x aluminium (heatsink dominates)"},
+    "JAMICO FAN 50X50X10": {"value": 1.2, "source": "assumed: STEP volume x plastic"},
+    "battery indicator": {"value": 1.85, "source": "assumed: STEP volume x PCB-like density"},
+    "rocker switch 1_test": {"value": 1.2, "source": "assumed: STEP volume x plastic"}
+  },
+  "plate_thickness_mm": {"value": 1.5, "source": "measured: note in Lasercut parts.dxf ('1.5mm Aluminium'); STEP plates are 1.5 mm too"},
+  "cell_18650_mass_g": {"value": 47.0, "source": "assumed (prompt, 24 Nov)"},
+  "push_rod_diameter_mm": {"value": 3.0, "source": "assumed: M3 rod for 5 mm ball rod ends; length = measured ball-centre distance"},
+
+  "servo": {
+    "model": "SPT5435LV",
+    "mass_g": {"value": 65.0, "source": "assumed: sellers say 62-72 g (prompt, 24 Nov)"},
+    "supply_V": {"value": 6.0, "source": "assumed (prompt)"},
+    "stall_torque_Nm": {"value": 3.4, "source": "seller spec at 6.0 V, not measured (prompt)"},
+    "torque_margin": {"value": 0.7, "source": "assumed (prompt): forcerange = margin x stall"},
+    "speed_s_per_60deg": {"value": 0.14, "source": "seller spec at 6.0 V, not measured (prompt)"},
+    "max_rate_rad_s": {"value": 7.48, "source": "derived: (60 deg = 1.047 rad) / 0.14 s"},
+    "deadband_deg": {"value": 0.36, "source": "derived: 4 us of the 500-2500 us range x 180 deg / 2000 us (prompt)"},
+    "travel_deg": {"value": 180.0, "source": "seller spec (prompt)"},
+    "kp_Nm_per_rad": {"value": 39.0, "source": "assumed: full stall torque at 5 deg error (3.4 / 0.0873)"},
+    "damping_Nm_s_per_rad": {"value": 0.45, "source": "estimate (prompt): back-EMF ~ stall torque / no-load speed = 3.4 / 7.48"},
+    "armature_kg_m2": {"value": 0.002, "source": "assumed: reflected motor + gear inertia at the output"},
+    "sustained_fraction": {"value": 0.25, "source": "assumed (prompt): sustained-load guide, 25 % of stall; the seller gives no continuous rating"}
+  },
+
+  "delay_ms": {"value": 20, "sweep": [10, 20, 40, 60, 80],
+               "source": "guess (prompt): Mini Pupper 2 measured 76 ms (Weddington et al., arXiv 2607.26434)"},
+
+  "imu": {
+    "gyro_noise_rad_s": {"value": 0.005, "source": "assumed (MPU-6050-class white noise per sample)"},
+    "gyro_bias_rad_s": {"value": 0.01, "source": "assumed constant bias per axis, drawn once per episode"},
+    "accel_noise_m_s2": {"value": 0.05, "source": "assumed"},
+    "accel_bias_m_s2": {"value": 0.1, "source": "assumed constant bias per axis, drawn once per episode"}
+  },
+
+  "foot_friction": {"value": 0.9, "source": "assumed: TPU on a flat floor, 0.8-1.0 (prompt)"},
+  "timestep_s": {"value": 0.001, "source": "assumed (prompt: 1-2 ms)"},
+  "control_hz": {"value": 50, "source": "assumed (prompt); the servos' 330 Hz frame rate is not the bottleneck"},
+  "stand_hip_height_mm": {"value": 160.0, "source": "chosen: hip pitch axis 160 mm above the floor, close to the CAD pose (about 159 mm)"},
+  "joint_limit_margin_deg": {"value": 10.0, "source": "assumed: keep the knee linkage this far from its dead points"}
+}

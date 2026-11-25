@@ -1,0 +1,1711 @@
+{
+ "total_g": 1857.42,
+ "bodies": {
+  "FL_femur": {
+   "mass_g": 41.628,
+   "com_mm": [
+    -7.812,
+    9.547,
+    -39.43
+   ],
+   "aabb_mm": [
+    [
+     -67.27,
+     -21.03,
+     -114.46
+    ],
+    [
+     66.8,
+     44.38,
+     35.91
+    ]
+   ],
+   "inertia_g_mm2": [
+    55722.539952061954,
+    61633.67026057892,
+    8129.074794594939,
+    -789.659849538758,
+    -1467.7786338872725,
+    2190.931930107867
+   ]
+  },
+  "FL_hip": {
+   "mass_g": 155.76,
+   "com_mm": [
+    10.91,
+    9.484,
+    -9.567
+   ],
+   "aabb_mm": [
+    [
+     -20.8,
+     -21.04,
+     -40.33
+    ],
+    [
+     42.81,
+     41.95,
+     21.54
+    ]
+   ],
+   "inertia_g_mm2": [
+    43941.02840110695,
+    54046.553896911064,
+    54744.15832867184,
+    -3747.387385291364,
+    2759.0987910961994,
+    -1877.8871185451255
+   ]
+  },
+  "FL_tibia": {
+   "mass_g": 27.058,
+   "com_mm": [
+    -1.307,
+    -0.11,
+    -46.936
+   ],
+   "aabb_mm": [
+    [
+     -81.94,
+     -40.3,
+     -127.26
+    ],
+    [
+     81.3,
+     39.12,
+     36.88
+    ]
+   ],
+   "inertia_g_mm2": [
+    56401.679689575525,
+    56042.23770233059,
+    2271.3340899773534,
+    17.01420756565703,
+    1369.3851215684822,
+    558.5270452825343
+   ]
+  },
+  "FR_femur": {
+   "mass_g": 41.628,
+   "com_mm": [
+    -7.847,
+    -9.683,
+    -39.685
+   ],
+   "aabb_mm": [
+    [
+     -67.6,
+     -45.87,
+     -114.64
+    ],
+    [
+     67.05,
+     22.61,
+     35.6
+    ]
+   ],
+   "inertia_g_mm2": [
+    55801.94800443063,
+    61752.54464059026,
+    8131.208378642854,
+    689.2803545095583,
+    -1629.044207970137,
+    -2216.470515308643
+   ]
+  },
+  "FR_hip": {
+   "mass_g": 159.039,
+   "com_mm": [
+    10.875,
+    -9.65,
+    -9.557
+   ],
+   "aabb_mm": [
+    [
+     -20.8,
+     -42.24,
+     -41.05
+    ],
+    [
+     42.44,
+     21.4,
+     22.11
+    ]
+   ],
+   "inertia_g_mm2": [
+    44505.236901233526,
+    56432.39811186823,
+    56692.53059135769,
+    3661.4181301482686,
+    2740.5443220190145,
+    1934.902041890005
+   ]
+  },
+  "FR_tibia": {
+   "mass_g": 27.062,
+   "com_mm": [
+    -1.283,
+    0.298,
+    -46.92
+   ],
+   "aabb_mm": [
+    [
+     -82.46,
+     -40.17,
+     -127.34
+    ],
+    [
+     81.63,
+     42.08,
+     36.98
+    ]
+   ],
+   "inertia_g_mm2": [
+    56396.9650674045,
+    56034.977805408926,
+    2272.5383114318515,
+    -14.600650771120486,
+    1397.846273963084,
+    -490.5670893692353
+   ]
+  },
+  "RL_femur": {
+   "mass_g": 42.347,
+   "com_mm": [
+    -7.621,
+    9.435,
+    -38.412
+   ],
+   "aabb_mm": [
+    [
+     -66.75,
+     -17.46,
+     -114.02
+    ],
+    [
+     66.36,
+     41.03,
+     36.42
+    ]
+   ],
+   "inertia_g_mm2": [
+    56765.84902415306,
+    62576.96156562936,
+    8207.309453005912,
+    -741.6391074879589,
+    -1452.8364116377047,
+    2410.16753903069
+   ]
+  },
+  "RL_hip": {
+   "mass_g": 158.706,
+   "com_mm": [
+    11.09,
+    9.625,
+    -9.586
+   ],
+   "aabb_mm": [
+    [
+     -18.37,
+     -20.29,
+     -38.88
+    ],
+    [
+     43.47,
+     41.34,
+     20.71
+    ]
+   ],
+   "inertia_g_mm2": [
+    44205.57114577283,
+    56345.97120607264,
+    56811.762614383544,
+    -3503.380821205771,
+    2517.253597241013,
+    -1782.9995429732317
+   ]
+  },
+  "RL_tibia": {
+   "mass_g": 27.599,
+   "com_mm": [
+    -1.069,
+    -0.245,
+    -47.644
+   ],
+   "aabb_mm": [
+    [
+     -80.51,
+     -37.08,
+     -127.0
+    ],
+    [
+     80.3,
+     35.93,
+     36.6
+    ]
+   ],
+   "inertia_g_mm2": [
+    56637.25884620969,
+    56258.399501676824,
+    2377.8647093283817,
+    15.98513824109922,
+    1513.1790996130921,
+    511.2829884724018
+   ]
+  },
+  "RR_femur": {
+   "mass_g": 41.628,
+   "com_mm": [
+    -7.782,
+    -9.682,
+    -39.222
+   ],
+   "aabb_mm": [
+    [
+     -66.7,
+     -41.13,
+     -113.89
+    ],
+    [
+     65.5,
+     17.73,
+     37.57
+    ]
+   ],
+   "inertia_g_mm2": [
+    55629.30923463851,
+    61530.51027500112,
+    8079.823036933703,
+    674.9175232658201,
+    -1335.107760135375,
+    -2256.684347124523
+   ]
+  },
+  "RR_hip": {
+   "mass_g": 159.039,
+   "com_mm": [
+    11.178,
+    -9.65,
+    -9.703
+   ],
+   "aabb_mm": [
+    [
+     -18.37,
+     -41.83,
+     -40.06
+    ],
+    [
+     45.13,
+     20.9,
+     21.09
+    ]
+   ],
+   "inertia_g_mm2": [
+    43926.23576535453,
+    56459.88902245171,
+    57302.31911500046,
+    3802.8944714236236,
+    2701.5066651916122,
+    1376.1197104999862
+   ]
+  },
+  "RR_tibia": {
+   "mass_g": 27.062,
+   "com_mm": [
+    -1.279,
+    0.303,
+    -46.92
+   ],
+   "aabb_mm": [
+    [
+     -75.2,
+     -41.06,
+     -127.67
+    ],
+    [
+     76.03,
+     43.15,
+     37.02
+    ]
+   ],
+   "inertia_g_mm2": [
+    56400.25266439928,
+    56041.12481623901,
+    2272.9992693769123,
+    -14.617766087339367,
+    1401.6701450060236,
+    -489.6587592786315
+   ]
+  },
+  "torso": {
+   "mass_g": 948.846,
+   "com_mm": [
+    -0.406,
+    0.216,
+    -6.204
+   ],
+   "aabb_mm": [
+    [
+     -153.17,
+     -57.0,
+     -38.37
+    ],
+    [
+     153.17,
+     62.43,
+     18.37
+    ]
+   ],
+   "inertia_g_mm2": [
+    1125167.6308157842,
+    5709007.678686546,
+    6270618.549424473,
+    1743.171250801713,
+    -519.6476801640097,
+    -2218.554106565604
+   ]
+  }
+ },
+ "parts": [
+  {
+   "part": "gövde1-V2",
+   "body": "torso",
+   "mass_g": 22.209,
+   "rule": "STL 29.85 cm3 x PLA x infill 0.6"
+  },
+  {
+   "part": "spt5435LV",
+   "body": "torso",
+   "mass_g": 65.0,
+   "rule": "servo, fixed"
+  },
+  {
+   "part": "spt5435LV",
+   "body": "torso",
+   "mass_g": 65.0,
+   "rule": "servo, fixed"
+  },
+  {
+   "part": "spt5435LV",
+   "body": "torso",
+   "mass_g": 65.0,
+   "rule": "servo, fixed"
+  },
+  {
+   "part": "spt5435LV",
+   "body": "torso",
+   "mass_g": 65.0,
+   "rule": "servo, fixed"
+  },
+  {
+   "part": "spt5435LV",
+   "body": "FL_hip",
+   "mass_g": 65.0,
+   "rule": "servo, fixed"
+  },
+  {
+   "part": "spt5435LV",
+   "body": "FL_hip",
+   "mass_g": 65.0,
+   "rule": "servo, fixed"
+  },
+  {
+   "part": "servo arm round",
+   "body": "FL_femur",
+   "mass_g": 0.843,
+   "rule": "STEP volume x nylon"
+  },
+  {
+   "part": "femur v2",
+   "body": "FL_femur",
+   "mass_g": 25.428,
+   "rule": "STL 34.18 cm3 x PLA x infill 0.6"
+  },
+  {
+   "part": "tibia v4",
+   "body": "FL_tibia",
+   "mass_g": 19.355,
+   "rule": "STL 21.19 cm3 PLA + foot 4.94 cm3 TPU, x infill 0.6"
+  },
+  {
+   "part": "servo arm mod-v2",
+   "body": "FL_femur",
+   "mass_g": 3.252,
+   "rule": "STL 4.37 cm3 x PLA x infill 0.6"
+  },
+  {
+   "part": "2servo holder2",
+   "body": "FL_hip",
+   "mass_g": 4.328,
+   "rule": "STL 5.82 cm3 x PLA x infill 0.6"
+  },
+  {
+   "part": "spacer-for100mm",
+   "body": "FL_femur",
+   "mass_g": 1.459,
+   "rule": "STL 1.96 cm3 x PLA x infill 0.6"
+  },
+  {
+   "part": "rodend 5mmPlastic",
+   "body": "FL_femur",
+   "mass_g": 0.517,
+   "rule": "STEP volume x POM"
+  },
+  {
+   "part": "rodend 5mmBall",
+   "body": "FL_femur",
+   "mass_g": 0.721,
+   "rule": "STEP volume x steel"
+  },
+  {
+   "part": "rodend 5mmPlastic",
+   "body": "FL_femur",
+   "mass_g": 0.517,
+   "rule": "STEP volume x POM"
+  },
+  {
+   "part": "rodend 5mmBall",
+   "body": "FL_femur",
+   "mass_g": 0.721,
+   "rule": "STEP volume x steel"
+  },
+  {
+   "part": "rodend 5mmPlastic",
+   "body": "FL_hip",
+   "mass_g": 0.517,
+   "rule": "STEP volume x POM"
+  },
+  {
+   "part": "rodend 5mmBall",
+   "body": "FL_hip",
+   "mass_g": 0.721,
+   "rule": "STEP volume x steel"
+  },
+  {
+   "part": "rodend 5mmPlastic",
+   "body": "FL_hip",
+   "mass_g": 0.517,
+   "rule": "STEP volume x POM"
+  },
+  {
+   "part": "rodend 5mmBall",
+   "body": "FL_hip",
+   "mass_g": 0.721,
+   "rule": "STEP volume x steel"
+  },
+  {
+   "part": "servo arm 1",
+   "body": "FL_hip",
+   "mass_g": 0.993,
+   "rule": "STEP volume x nylon"
+  },
+  {
+   "part": "2servo holder3",
+   "body": "FL_hip",
+   "mass_g": 3.877,
+   "rule": "STL 5.21 cm3 x PLA x infill 0.6"
+  },
+  {
+   "part": "Servo Mount - Arm Metal Standard_Dfaut",
+   "body": "FL_hip",
+   "mass_g": 2.904,
+   "rule": "STEP volume x Al"
+  },
+  {
+   "part": "socket button head cap screw_am_B18.3.4M - 3 x 0.5 x 12 SBHCS --N",
+   "body": "FL_femur",
+   "mass_g": 0.874,
+   "rule": "STEP volume x steel"
+  },
+  {
+   "part": "socket button head cap screw_am_B18.3.4M - 3 x 0.5 x 12 SBHCS --N",
+   "body": "FL_hip",
+   "mass_g": 0.874,
+   "rule": "STEP volume x steel"
+  },
+  {
+   "part": "socket button head cap screw_am_B18.3.4M - 3 x 0.5 x 12 SBHCS --N",
+   "body": "FL_hip",
+   "mass_g": 0.874,
+   "rule": "STEP volume x steel"
+  },
+  {
+   "part": "socket button head cap screw_am_B18.3.4M - 3 x 0.5 x 12 SBHCS --N",
+   "body": "FL_hip",
+   "mass_g": 0.874,
+   "rule": "STEP volume x steel"
+  },
+  {
+   "part": "socket button head cap screw_am_B18.3.4M - 3 x 0.5 x 12 SBHCS --N",
+   "body": "FL_femur",
+   "mass_g": 0.874,
+   "rule": "STEP volume x steel"
+  },
+  {
+   "part": "socket button head cap screw_am_B18.3.4M - 3 x 0.5 x 12 SBHCS --N",
+   "body": "FL_femur",
+   "mass_g": 0.874,
+   "rule": "STEP volume x steel"
+  },
+  {
+   "part": "socket button head cap screw_am_B18.3.4M - 3 x 0.5 x 12 SBHCS --N",
+   "body": "FL_tibia",
+   "mass_g": 0.874,
+   "rule": "STEP volume x steel"
+  },
+  {
+   "part": "socket button head cap screw_am_B18.3.4M - 3 x 0.5 x 12 SBHCS --N",
+   "body": "FL_tibia",
+   "mass_g": 0.874,
+   "rule": "STEP volume x steel"
+  },
+  {
+   "part": "684z bearing",
+   "body": "FL_tibia",
+   "mass_g": 1.479,
+   "rule": "STEP volume x steel"
+  },
+  {
+   "part": "684z bearing",
+   "body": "FL_tibia",
+   "mass_g": 1.479,
+   "rule": "STEP volume x steel"
+  },
+  {
+   "part": "socket countersunk head screw_am_B18.3.5M - 4 x 0.7 x 12 Socket FCHS  -- 12N",
+   "body": "FL_tibia",
+   "mass_g": 1.499,
+   "rule": "STEP volume x steel"
+  },
+  {
+   "part": "socket countersunk head screw_am_B18.3.5M - 4 x 0.7 x 12 Socket FCHS  -- 12N",
+   "body": "FL_tibia",
+   "mass_g": 1.499,
+   "rule": "STEP volume x steel"
+  },
+  {
+   "part": "socket button head cap screw_am_B18.3.4M - 3 x 0.5 x 12 SBHCS --N",
+   "body": "FL_hip",
+   "mass_g": 0.874,
+   "rule": "STEP volume x steel"
+  },
+  {
+   "part": "socket button head cap screw_am_B18.3.4M - 3 x 0.5 x 12 SBHCS --N",
+   "body": "FL_hip",
+   "mass_g": 0.874,
+   "rule": "STEP volume x steel"
+  },
+  {
+   "part": "socket button head cap screw_am_B18.3.4M - 3 x 0.5 x 12 SBHCS --N",
+   "body": "FL_hip",
+   "mass_g": 0.874,
+   "rule": "STEP volume x steel"
+  },
+  {
+   "part": "socket button head cap screw_am_B18.3.4M - 3 x 0.5 x 12 SBHCS --N",
+   "body": "FL_hip",
+   "mass_g": 0.874,
+   "rule": "STEP volume x steel"
+  },
+  {
+   "part": "socket button head cap screw_am_B18.3.4M - 3 x 0.5 x 12 SBHCS --N",
+   "body": "FL_hip",
+   "mass_g": 0.874,
+   "rule": "STEP volume x steel"
+  },
+  {
+   "part": "socket button head cap screw_am_B18.3.4M - 3 x 0.5 x 12 SBHCS --N",
+   "body": "FL_hip",
+   "mass_g": 0.874,
+   "rule": "STEP volume x steel"
+  },
+  {
+   "part": "socket button head cap screw_am_B18.3.4M - 3 x 0.5 x 12 SBHCS --N",
+   "body": "FL_hip",
+   "mass_g": 0.874,
+   "rule": "STEP volume x steel"
+  },
+  {
+   "part": "socket button head cap screw_am_B18.3.4M - 3 x 0.5 x 12 SBHCS --N",
+   "body": "FL_hip",
+   "mass_g": 0.874,
+   "rule": "STEP volume x steel"
+  },
+  {
+   "part": "spt5435LV",
+   "body": "FR_hip",
+   "mass_g": 65.0,
+   "rule": "servo, fixed"
+  },
+  {
+   "part": "spt5435LV",
+   "body": "FR_hip",
+   "mass_g": 65.0,
+   "rule": "servo, fixed"
+  },
+  {
+   "part": "servo arm round",
+   "body": "FR_femur",
+   "mass_g": 0.843,
+   "rule": "STEP volume x nylon"
+  },
+  {
+   "part": "Servo Mount - Arm Metal Standard_Dfaut",
+   "body": "FR_hip",
+   "mass_g": 2.904,
+   "rule": "STEP volume x Al"
+  },
+  {
+   "part": "femur v2",
+   "body": "FR_femur",
+   "mass_g": 25.428,
+   "rule": "STL 34.18 cm3 x PLA x infill 0.6"
+  },
+  {
+   "part": "mirror-tibia v4",
+   "body": "FR_tibia",
+   "mass_g": 19.358,
+   "rule": "STL 21.20 cm3 PLA + foot 4.94 cm3 TPU, x infill 0.6"
+  },
+  {
+   "part": "Aynalama2servo holder3",
+   "body": "FR_hip",
+   "mass_g": 3.877,
+   "rule": "STL 5.21 cm3 x PLA x infill 0.6"
+  },
+  {
+   "part": "Aynalama2servo holder2",
+   "body": "FR_hip",
+   "mass_g": 4.328,
+   "rule": "STL 5.82 cm3 x PLA x infill 0.6"
+  },
+  {
+   "part": "servo arm 1",
+   "body": "FR_hip",
+   "mass_g": 0.993,
+   "rule": "STEP volume x nylon"
+  },
+  {
+   "part": "Aynalamaservo arm mod-v2",
+   "body": "FR_femur",
+   "mass_g": 3.252,
+   "rule": "STL 4.37 cm3 x PLA x infill 0.6"
+  },
+  {
+   "part": "rodend 5mmPlastic",
+   "body": "FR_hip",
+   "mass_g": 0.517,
+   "rule": "STEP volume x POM"
+  },
+  {
+   "part": "rodend 5mmBall",
+   "body": "FR_hip",
+   "mass_g": 0.721,
+   "rule": "STEP volume x steel"
+  },
+  {
+   "part": "rodend 5mmPlastic",
+   "body": "FR_hip",
+   "mass_g": 0.517,
+   "rule": "STEP volume x POM"
+  },
+  {
+   "part": "rodend 5mmBall",
+   "body": "FR_hip",
+   "mass_g": 0.721,
+   "rule": "STEP volume x steel"
+  },
+  {
+   "part": "spacer-for100mm",
+   "body": "FR_femur",
+   "mass_g": 1.459,
+   "rule": "STL 1.96 cm3 x PLA x infill 0.6"
+  },
+  {
+   "part": "rodend 5mmPlastic",
+   "body": "FR_femur",
+   "mass_g": 0.517,
+   "rule": "STEP volume x POM"
+  },
+  {
+   "part": "rodend 5mmBall",
+   "body": "FR_femur",
+   "mass_g": 0.721,
+   "rule": "STEP volume x steel"
+  },
+  {
+   "part": "rodend 5mmPlastic",
+   "body": "FR_femur",
+   "mass_g": 0.517,
+   "rule": "STEP volume x POM"
+  },
+  {
+   "part": "rodend 5mmBall",
+   "body": "FR_femur",
+   "mass_g": 0.721,
+   "rule": "STEP volume x steel"
+  },
+  {
+   "part": "socket button head cap screw_am_B18.3.4M - 4 x 0.7 x 8 SBHCS --N",
+   "body": "FR_hip",
+   "mass_g": 1.284,
+   "rule": "STEP volume x steel"
+  },
+  {
+   "part": "socket button head cap screw_am_B18.3.4M - 4 x 0.7 x 8 SBHCS --N",
+   "body": "FR_hip",
+   "mass_g": 1.284,
+   "rule": "STEP volume x steel"
+  },
+  {
+   "part": "socket button head cap screw_am_B18.3.4M - 4 x 0.7 x 8 SBHCS --N",
+   "body": "FR_hip",
+   "mass_g": 1.284,
+   "rule": "STEP volume x steel"
+  },
+  {
+   "part": "socket button head cap screw_am_B18.3.4M - 4 x 0.7 x 8 SBHCS --N",
+   "body": "FR_hip",
+   "mass_g": 1.284,
+   "rule": "STEP volume x steel"
+  },
+  {
+   "part": "socket button head cap screw_am_B18.3.4M - 4 x 0.7 x 8 SBHCS --N",
+   "body": "FR_hip",
+   "mass_g": 1.284,
+   "rule": "STEP volume x steel"
+  },
+  {
+   "part": "socket button head cap screw_am_B18.3.4M - 4 x 0.7 x 8 SBHCS --N",
+   "body": "FR_hip",
+   "mass_g": 1.284,
+   "rule": "STEP volume x steel"
+  },
+  {
+   "part": "socket button head cap screw_am_B18.3.4M - 4 x 0.7 x 8 SBHCS --N",
+   "body": "FR_hip",
+   "mass_g": 1.284,
+   "rule": "STEP volume x steel"
+  },
+  {
+   "part": "socket button head cap screw_am_B18.3.4M - 4 x 0.7 x 8 SBHCS --N",
+   "body": "FR_hip",
+   "mass_g": 1.284,
+   "rule": "STEP volume x steel"
+  },
+  {
+   "part": "684z bearing",
+   "body": "FR_tibia",
+   "mass_g": 1.479,
+   "rule": "STEP volume x steel"
+  },
+  {
+   "part": "684z bearing",
+   "body": "FR_tibia",
+   "mass_g": 1.479,
+   "rule": "STEP volume x steel"
+  },
+  {
+   "part": "socket button head cap screw_am_B18.3.4M - 3 x 0.5 x 12 SBHCS --N",
+   "body": "FR_hip",
+   "mass_g": 0.874,
+   "rule": "STEP volume x steel"
+  },
+  {
+   "part": "socket button head cap screw_am_B18.3.4M - 3 x 0.5 x 12 SBHCS --N",
+   "body": "FR_hip",
+   "mass_g": 0.874,
+   "rule": "STEP volume x steel"
+  },
+  {
+   "part": "socket button head cap screw_am_B18.3.4M - 3 x 0.5 x 12 SBHCS --N",
+   "body": "FR_femur",
+   "mass_g": 0.874,
+   "rule": "STEP volume x steel"
+  },
+  {
+   "part": "socket button head cap screw_am_B18.3.4M - 3 x 0.5 x 12 SBHCS --N",
+   "body": "FR_hip",
+   "mass_g": 0.874,
+   "rule": "STEP volume x steel"
+  },
+  {
+   "part": "socket button head cap screw_am_B18.3.4M - 3 x 0.5 x 12 SBHCS --N",
+   "body": "FR_femur",
+   "mass_g": 0.874,
+   "rule": "STEP volume x steel"
+  },
+  {
+   "part": "socket button head cap screw_am_B18.3.4M - 3 x 0.5 x 12 SBHCS --N",
+   "body": "FR_femur",
+   "mass_g": 0.874,
+   "rule": "STEP volume x steel"
+  },
+  {
+   "part": "socket button head cap screw_am_B18.3.4M - 3 x 0.5 x 12 SBHCS --N",
+   "body": "FR_tibia",
+   "mass_g": 0.874,
+   "rule": "STEP volume x steel"
+  },
+  {
+   "part": "socket button head cap screw_am_B18.3.4M - 3 x 0.5 x 12 SBHCS --N",
+   "body": "FR_tibia",
+   "mass_g": 0.874,
+   "rule": "STEP volume x steel"
+  },
+  {
+   "part": "socket countersunk head screw_am_B18.3.5M - 4 x 0.7 x 12 Socket FCHS  -- 12N",
+   "body": "FR_tibia",
+   "mass_g": 1.499,
+   "rule": "STEP volume x steel"
+  },
+  {
+   "part": "socket countersunk head screw_am_B18.3.5M - 4 x 0.7 x 12 Socket FCHS  -- 12N",
+   "body": "FR_tibia",
+   "mass_g": 1.499,
+   "rule": "STEP volume x steel"
+  },
+  {
+   "part": "spt5435LV",
+   "body": "RL_hip",
+   "mass_g": 65.0,
+   "rule": "servo, fixed"
+  },
+  {
+   "part": "spt5435LV",
+   "body": "RL_hip",
+   "mass_g": 65.0,
+   "rule": "servo, fixed"
+  },
+  {
+   "part": "servo arm round",
+   "body": "RL_femur",
+   "mass_g": 0.843,
+   "rule": "STEP volume x nylon"
+  },
+  {
+   "part": "femur v2",
+   "body": "RL_femur",
+   "mass_g": 25.428,
+   "rule": "STL 34.18 cm3 x PLA x infill 0.6"
+  },
+  {
+   "part": "tibia v4",
+   "body": "RL_tibia",
+   "mass_g": 19.355,
+   "rule": "STL 21.19 cm3 PLA + foot 4.94 cm3 TPU, x infill 0.6"
+  },
+  {
+   "part": "servo arm mod-v2",
+   "body": "RL_femur",
+   "mass_g": 3.252,
+   "rule": "STL 4.37 cm3 x PLA x infill 0.6"
+  },
+  {
+   "part": "Aynalama2servo holder3",
+   "body": "RL_hip",
+   "mass_g": 3.877,
+   "rule": "STL 5.21 cm3 x PLA x infill 0.6"
+  },
+  {
+   "part": "spacer-for100mm",
+   "body": "RL_femur",
+   "mass_g": 1.459,
+   "rule": "STL 1.96 cm3 x PLA x infill 0.6"
+  },
+  {
+   "part": "rodend 5mmPlastic",
+   "body": "RL_femur",
+   "mass_g": 0.517,
+   "rule": "STEP volume x POM"
+  },
+  {
+   "part": "rodend 5mmBall",
+   "body": "RL_femur",
+   "mass_g": 0.721,
+   "rule": "STEP volume x steel"
+  },
+  {
+   "part": "rodend 5mmPlastic",
+   "body": "RL_femur",
+   "mass_g": 0.517,
+   "rule": "STEP volume x POM"
+  },
+  {
+   "part": "rodend 5mmBall",
+   "body": "RL_femur",
+   "mass_g": 0.721,
+   "rule": "STEP volume x steel"
+  },
+  {
+   "part": "rodend 5mmPlastic",
+   "body": "RL_hip",
+   "mass_g": 0.517,
+   "rule": "STEP volume x POM"
+  },
+  {
+   "part": "rodend 5mmBall",
+   "body": "RL_hip",
+   "mass_g": 0.721,
+   "rule": "STEP volume x steel"
+  },
+  {
+   "part": "rodend 5mmPlastic",
+   "body": "RL_hip",
+   "mass_g": 0.517,
+   "rule": "STEP volume x POM"
+  },
+  {
+   "part": "rodend 5mmBall",
+   "body": "RL_hip",
+   "mass_g": 0.721,
+   "rule": "STEP volume x steel"
+  },
+  {
+   "part": "servo arm 1",
+   "body": "RL_hip",
+   "mass_g": 0.993,
+   "rule": "STEP volume x nylon"
+  },
+  {
+   "part": "Aynalama2servo holder2",
+   "body": "RL_hip",
+   "mass_g": 4.328,
+   "rule": "STL 5.82 cm3 x PLA x infill 0.6"
+  },
+  {
+   "part": "Servo Mount - Arm Metal Standard_Dfaut",
+   "body": "RL_hip",
+   "mass_g": 2.904,
+   "rule": "STEP volume x Al"
+  },
+  {
+   "part": "684z bearing",
+   "body": "RL_tibia",
+   "mass_g": 1.479,
+   "rule": "STEP volume x steel"
+  },
+  {
+   "part": "684z bearing",
+   "body": "RL_tibia",
+   "mass_g": 1.479,
+   "rule": "STEP volume x steel"
+  },
+  {
+   "part": "socket button head cap screw_am_B18.3.4M - 3 x 0.5 x 12 SBHCS --N",
+   "body": "RL_femur",
+   "mass_g": 0.874,
+   "rule": "STEP volume x steel"
+  },
+  {
+   "part": "socket button head cap screw_am_B18.3.4M - 3 x 0.5 x 12 SBHCS --N",
+   "body": "RL_femur",
+   "mass_g": 0.874,
+   "rule": "STEP volume x steel"
+  },
+  {
+   "part": "socket button head cap screw_am_B18.3.4M - 3 x 0.5 x 12 SBHCS --N",
+   "body": "RL_hip",
+   "mass_g": 0.874,
+   "rule": "STEP volume x steel"
+  },
+  {
+   "part": "socket button head cap screw_am_B18.3.4M - 3 x 0.5 x 12 SBHCS --N",
+   "body": "RL_hip",
+   "mass_g": 0.874,
+   "rule": "STEP volume x steel"
+  },
+  {
+   "part": "socket head cap screw_am_B18.3.1M - 3 x 0.5 x 20 Hex SHCS -- 20NHX",
+   "body": "RL_femur",
+   "mass_g": 1.593,
+   "rule": "STEP volume x steel"
+  },
+  {
+   "part": "socket button head cap screw_am_B18.3.4M - 3 x 0.5 x 6 SBHCS --N",
+   "body": "RL_hip",
+   "mass_g": 0.541,
+   "rule": "STEP volume x steel"
+  },
+  {
+   "part": "socket button head cap screw_am_B18.3.4M - 3 x 0.5 x 10 SBHCS --N",
+   "body": "RL_tibia",
+   "mass_g": 0.763,
+   "rule": "STEP volume x steel"
+  },
+  {
+   "part": "socket button head cap screw_am_B18.3.4M - 3 x 0.5 x 10 SBHCS --N",
+   "body": "RL_tibia",
+   "mass_g": 0.763,
+   "rule": "STEP volume x steel"
+  },
+  {
+   "part": "socket button head cap screw_am_B18.3.4M - 3 x 0.5 x 10 SBHCS --N",
+   "body": "RL_tibia",
+   "mass_g": 0.763,
+   "rule": "STEP volume x steel"
+  },
+  {
+   "part": "socket countersunk head screw_am_B18.3.5M - 4 x 0.7 x 12 Socket FCHS  -- 12N",
+   "body": "RL_tibia",
+   "mass_g": 1.499,
+   "rule": "STEP volume x steel"
+  },
+  {
+   "part": "socket countersunk head screw_am_B18.3.5M - 4 x 0.7 x 12 Socket FCHS  -- 12N",
+   "body": "RL_tibia",
+   "mass_g": 1.499,
+   "rule": "STEP volume x steel"
+  },
+  {
+   "part": "socket button head cap screw_am_B18.3.4M - 4 x 0.7 x 8 SBHCS --N",
+   "body": "RL_hip",
+   "mass_g": 1.284,
+   "rule": "STEP volume x steel"
+  },
+  {
+   "part": "socket button head cap screw_am_B18.3.4M - 4 x 0.7 x 8 SBHCS --N",
+   "body": "RL_hip",
+   "mass_g": 1.284,
+   "rule": "STEP volume x steel"
+  },
+  {
+   "part": "socket button head cap screw_am_B18.3.4M - 4 x 0.7 x 8 SBHCS --N",
+   "body": "RL_hip",
+   "mass_g": 1.284,
+   "rule": "STEP volume x steel"
+  },
+  {
+   "part": "socket button head cap screw_am_B18.3.4M - 4 x 0.7 x 8 SBHCS --N",
+   "body": "RL_hip",
+   "mass_g": 1.284,
+   "rule": "STEP volume x steel"
+  },
+  {
+   "part": "socket button head cap screw_am_B18.3.4M - 4 x 0.7 x 8 SBHCS --N",
+   "body": "RL_hip",
+   "mass_g": 1.284,
+   "rule": "STEP volume x steel"
+  },
+  {
+   "part": "socket button head cap screw_am_B18.3.4M - 4 x 0.7 x 8 SBHCS --N",
+   "body": "RL_hip",
+   "mass_g": 1.284,
+   "rule": "STEP volume x steel"
+  },
+  {
+   "part": "socket button head cap screw_am_B18.3.4M - 4 x 0.7 x 8 SBHCS --N",
+   "body": "RL_hip",
+   "mass_g": 1.284,
+   "rule": "STEP volume x steel"
+  },
+  {
+   "part": "socket button head cap screw_am_B18.3.4M - 4 x 0.7 x 8 SBHCS --N",
+   "body": "RL_hip",
+   "mass_g": 1.284,
+   "rule": "STEP volume x steel"
+  },
+  {
+   "part": "spt5435LV",
+   "body": "RR_hip",
+   "mass_g": 65.0,
+   "rule": "servo, fixed"
+  },
+  {
+   "part": "spt5435LV",
+   "body": "RR_hip",
+   "mass_g": 65.0,
+   "rule": "servo, fixed"
+  },
+  {
+   "part": "servo arm round",
+   "body": "RR_femur",
+   "mass_g": 0.843,
+   "rule": "STEP volume x nylon"
+  },
+  {
+   "part": "Servo Mount - Arm Metal Standard_Dfaut",
+   "body": "RR_hip",
+   "mass_g": 2.904,
+   "rule": "STEP volume x Al"
+  },
+  {
+   "part": "femur v2",
+   "body": "RR_femur",
+   "mass_g": 25.428,
+   "rule": "STL 34.18 cm3 x PLA x infill 0.6"
+  },
+  {
+   "part": "mirror-tibia v4",
+   "body": "RR_tibia",
+   "mass_g": 19.358,
+   "rule": "STL 21.20 cm3 PLA + foot 4.94 cm3 TPU, x infill 0.6"
+  },
+  {
+   "part": "2servo holder2",
+   "body": "RR_hip",
+   "mass_g": 4.328,
+   "rule": "STL 5.82 cm3 x PLA x infill 0.6"
+  },
+  {
+   "part": "servo arm 1",
+   "body": "RR_hip",
+   "mass_g": 0.993,
+   "rule": "STEP volume x nylon"
+  },
+  {
+   "part": "Aynalamaservo arm mod-v2",
+   "body": "RR_femur",
+   "mass_g": 3.252,
+   "rule": "STL 4.37 cm3 x PLA x infill 0.6"
+  },
+  {
+   "part": "rodend 5mmPlastic",
+   "body": "RR_hip",
+   "mass_g": 0.517,
+   "rule": "STEP volume x POM"
+  },
+  {
+   "part": "rodend 5mmBall",
+   "body": "RR_hip",
+   "mass_g": 0.721,
+   "rule": "STEP volume x steel"
+  },
+  {
+   "part": "rodend 5mmPlastic",
+   "body": "RR_hip",
+   "mass_g": 0.517,
+   "rule": "STEP volume x POM"
+  },
+  {
+   "part": "rodend 5mmBall",
+   "body": "RR_hip",
+   "mass_g": 0.721,
+   "rule": "STEP volume x steel"
+  },
+  {
+   "part": "spacer-for100mm",
+   "body": "RR_femur",
+   "mass_g": 1.459,
+   "rule": "STL 1.96 cm3 x PLA x infill 0.6"
+  },
+  {
+   "part": "rodend 5mmPlastic",
+   "body": "RR_femur",
+   "mass_g": 0.517,
+   "rule": "STEP volume x POM"
+  },
+  {
+   "part": "rodend 5mmBall",
+   "body": "RR_femur",
+   "mass_g": 0.721,
+   "rule": "STEP volume x steel"
+  },
+  {
+   "part": "rodend 5mmPlastic",
+   "body": "RR_femur",
+   "mass_g": 0.517,
+   "rule": "STEP volume x POM"
+  },
+  {
+   "part": "rodend 5mmBall",
+   "body": "RR_femur",
+   "mass_g": 0.721,
+   "rule": "STEP volume x steel"
+  },
+  {
+   "part": "2servo holder3",
+   "body": "RR_hip",
+   "mass_g": 3.877,
+   "rule": "STL 5.21 cm3 x PLA x infill 0.6"
+  },
+  {
+   "part": "684z bearing",
+   "body": "RR_tibia",
+   "mass_g": 1.479,
+   "rule": "STEP volume x steel"
+  },
+  {
+   "part": "684z bearing",
+   "body": "RR_tibia",
+   "mass_g": 1.479,
+   "rule": "STEP volume x steel"
+  },
+  {
+   "part": "socket countersunk head screw_am_B18.3.5M - 4 x 0.7 x 12 Socket FCHS  -- 12N",
+   "body": "RR_tibia",
+   "mass_g": 1.499,
+   "rule": "STEP volume x steel"
+  },
+  {
+   "part": "socket countersunk head screw_am_B18.3.5M - 4 x 0.7 x 12 Socket FCHS  -- 12N",
+   "body": "RR_tibia",
+   "mass_g": 1.499,
+   "rule": "STEP volume x steel"
+  },
+  {
+   "part": "socket button head cap screw_am_B18.3.4M - 3 x 0.5 x 12 SBHCS --N",
+   "body": "RR_hip",
+   "mass_g": 0.874,
+   "rule": "STEP volume x steel"
+  },
+  {
+   "part": "socket button head cap screw_am_B18.3.4M - 3 x 0.5 x 12 SBHCS --N",
+   "body": "RR_hip",
+   "mass_g": 0.874,
+   "rule": "STEP volume x steel"
+  },
+  {
+   "part": "socket button head cap screw_am_B18.3.4M - 3 x 0.5 x 12 SBHCS --N",
+   "body": "RR_hip",
+   "mass_g": 0.874,
+   "rule": "STEP volume x steel"
+  },
+  {
+   "part": "socket button head cap screw_am_B18.3.4M - 3 x 0.5 x 12 SBHCS --N",
+   "body": "RR_femur",
+   "mass_g": 0.874,
+   "rule": "STEP volume x steel"
+  },
+  {
+   "part": "socket button head cap screw_am_B18.3.4M - 3 x 0.5 x 12 SBHCS --N",
+   "body": "RR_femur",
+   "mass_g": 0.874,
+   "rule": "STEP volume x steel"
+  },
+  {
+   "part": "socket button head cap screw_am_B18.3.4M - 3 x 0.5 x 12 SBHCS --N",
+   "body": "RR_femur",
+   "mass_g": 0.874,
+   "rule": "STEP volume x steel"
+  },
+  {
+   "part": "socket button head cap screw_am_B18.3.4M - 3 x 0.5 x 12 SBHCS --N",
+   "body": "RR_tibia",
+   "mass_g": 0.874,
+   "rule": "STEP volume x steel"
+  },
+  {
+   "part": "socket button head cap screw_am_B18.3.4M - 3 x 0.5 x 12 SBHCS --N",
+   "body": "RR_tibia",
+   "mass_g": 0.874,
+   "rule": "STEP volume x steel"
+  },
+  {
+   "part": "socket button head cap screw_am_B18.3.4M - 4 x 0.7 x 8 SBHCS --N",
+   "body": "RR_hip",
+   "mass_g": 1.284,
+   "rule": "STEP volume x steel"
+  },
+  {
+   "part": "socket button head cap screw_am_B18.3.4M - 4 x 0.7 x 8 SBHCS --N",
+   "body": "RR_hip",
+   "mass_g": 1.284,
+   "rule": "STEP volume x steel"
+  },
+  {
+   "part": "socket button head cap screw_am_B18.3.4M - 4 x 0.7 x 8 SBHCS --N",
+   "body": "RR_hip",
+   "mass_g": 1.284,
+   "rule": "STEP volume x steel"
+  },
+  {
+   "part": "socket button head cap screw_am_B18.3.4M - 4 x 0.7 x 8 SBHCS --N",
+   "body": "RR_hip",
+   "mass_g": 1.284,
+   "rule": "STEP volume x steel"
+  },
+  {
+   "part": "socket button head cap screw_am_B18.3.4M - 4 x 0.7 x 8 SBHCS --N",
+   "body": "RR_hip",
+   "mass_g": 1.284,
+   "rule": "STEP volume x steel"
+  },
+  {
+   "part": "socket button head cap screw_am_B18.3.4M - 4 x 0.7 x 8 SBHCS --N",
+   "body": "RR_hip",
+   "mass_g": 1.284,
+   "rule": "STEP volume x steel"
+  },
+  {
+   "part": "socket button head cap screw_am_B18.3.4M - 4 x 0.7 x 8 SBHCS --N",
+   "body": "RR_hip",
+   "mass_g": 1.284,
+   "rule": "STEP volume x steel"
+  },
+  {
+   "part": "socket button head cap screw_am_B18.3.4M - 4 x 0.7 x 8 SBHCS --N",
+   "body": "RR_hip",
+   "mass_g": 1.284,
+   "rule": "STEP volume x steel"
+  },
+  {
+   "part": "dc-dc SZBK07",
+   "body": "torso",
+   "mass_g": 46.839,
+   "rule": "STEP volume x 2.7 g/cm3"
+  },
+  {
+   "part": "ön1-V2",
+   "body": "torso",
+   "mass_g": 15.427,
+   "rule": "STL 20.74 cm3 x PLA x infill 0.6"
+  },
+  {
+   "part": "üst sac",
+   "body": "torso",
+   "mass_g": 63.134,
+   "rule": "DXF 15589 mm2 x 1.5 mm x Al"
+  },
+  {
+   "part": "ARKA1-V2-SWITCH",
+   "body": "torso",
+   "mass_g": 18.332,
+   "rule": "STL 24.64 cm3 x PLA x infill 0.6"
+  },
+  {
+   "part": "alt sac",
+   "body": "torso",
+   "mass_g": 67.087,
+   "rule": "DXF 16565 mm2 x 1.5 mm x Al"
+  },
+  {
+   "part": "dc-dc SZBK07",
+   "body": "torso",
+   "mass_g": 46.839,
+   "rule": "STEP volume x 2.7 g/cm3"
+  },
+  {
+   "part": "Orange Pi Zero",
+   "body": "torso",
+   "mass_g": 14.992,
+   "rule": "STEP volume x 1.85 g/cm3"
+  },
+  {
+   "part": "gövde2-V2",
+   "body": "torso",
+   "mass_g": 25.288,
+   "rule": "STL 33.99 cm3 x PLA x infill 0.6"
+  },
+  {
+   "part": "JAMICO FAN 50X50X10",
+   "body": "torso",
+   "mass_g": 10.02,
+   "rule": "STEP volume x 1.2 g/cm3"
+  },
+  {
+   "part": "3x18650",
+   "body": "torso",
+   "mass_g": 157.33,
+   "rule": "3 cells x 47.0 g + case STL 21.95 cm3 PLA"
+  },
+  {
+   "part": "3x18650",
+   "body": "torso",
+   "mass_g": 157.33,
+   "rule": "3 cells x 47.0 g + case STL 21.95 cm3 PLA"
+  },
+  {
+   "part": "battery indicator",
+   "body": "torso",
+   "mass_g": 8.356,
+   "rule": "STEP volume x 1.85 g/cm3"
+  },
+  {
+   "part": "socket button head cap screw_am_B18.3.4M - 3 x 0.5 x 12 SBHCS --N",
+   "body": "torso",
+   "mass_g": 0.874,
+   "rule": "STEP volume x steel"
+  },
+  {
+   "part": "socket button head cap screw_am_B18.3.4M - 3 x 0.5 x 12 SBHCS --N",
+   "body": "torso",
+   "mass_g": 0.874,
+   "rule": "STEP volume x steel"
+  },
+  {
+   "part": "socket button head cap screw_am_B18.3.4M - 3 x 0.5 x 12 SBHCS --N",
+   "body": "torso",
+   "mass_g": 0.874,
+   "rule": "STEP volume x steel"
+  },
+  {
+   "part": "socket button head cap screw_am_B18.3.4M - 3 x 0.5 x 12 SBHCS --N",
+   "body": "torso",
+   "mass_g": 0.874,
+   "rule": "STEP volume x steel"
+  },
+  {
+   "part": "socket button head cap screw_am_B18.3.4M - 3 x 0.5 x 12 SBHCS --N",
+   "body": "torso",
+   "mass_g": 0.874,
+   "rule": "STEP volume x steel"
+  },
+  {
+   "part": "socket button head cap screw_am_B18.3.4M - 3 x 0.5 x 12 SBHCS --N",
+   "body": "torso",
+   "mass_g": 0.874,
+   "rule": "STEP volume x steel"
+  },
+  {
+   "part": "socket button head cap screw_am_B18.3.4M - 3 x 0.5 x 12 SBHCS --N",
+   "body": "torso",
+   "mass_g": 0.874,
+   "rule": "STEP volume x steel"
+  },
+  {
+   "part": "socket button head cap screw_am_B18.3.4M - 3 x 0.5 x 12 SBHCS --N",
+   "body": "torso",
+   "mass_g": 0.874,
+   "rule": "STEP volume x steel"
+  },
+  {
+   "part": "socket button head cap screw_am_B18.3.4M - 3 x 0.5 x 12 SBHCS --N",
+   "body": "torso",
+   "mass_g": 0.874,
+   "rule": "STEP volume x steel"
+  },
+  {
+   "part": "socket button head cap screw_am_B18.3.4M - 3 x 0.5 x 12 SBHCS --N",
+   "body": "torso",
+   "mass_g": 0.874,
+   "rule": "STEP volume x steel"
+  },
+  {
+   "part": "socket button head cap screw_am_B18.3.4M - 3 x 0.5 x 12 SBHCS --N",
+   "body": "torso",
+   "mass_g": 0.874,
+   "rule": "STEP volume x steel"
+  },
+  {
+   "part": "socket button head cap screw_am_B18.3.4M - 3 x 0.5 x 12 SBHCS --N",
+   "body": "torso",
+   "mass_g": 0.874,
+   "rule": "STEP volume x steel"
+  },
+  {
+   "part": "socket button head cap screw_am_B18.3.4M - 3 x 0.5 x 12 SBHCS --N",
+   "body": "torso",
+   "mass_g": 0.874,
+   "rule": "STEP volume x steel"
+  },
+  {
+   "part": "socket button head cap screw_am_B18.3.4M - 3 x 0.5 x 12 SBHCS --N",
+   "body": "torso",
+   "mass_g": 0.874,
+   "rule": "STEP volume x steel"
+  },
+  {
+   "part": "socket button head cap screw_am_B18.3.4M - 3 x 0.5 x 12 SBHCS --N",
+   "body": "torso",
+   "mass_g": 0.874,
+   "rule": "STEP volume x steel"
+  },
+  {
+   "part": "socket button head cap screw_am_B18.3.4M - 3 x 0.5 x 12 SBHCS --N",
+   "body": "torso",
+   "mass_g": 0.874,
+   "rule": "STEP volume x steel"
+  },
+  {
+   "part": "socket button head cap screw_am_B18.3.4M - 3 x 0.5 x 12 SBHCS --N",
+   "body": "torso",
+   "mass_g": 0.874,
+   "rule": "STEP volume x steel"
+  },
+  {
+   "part": "socket button head cap screw_am_B18.3.4M - 3 x 0.5 x 12 SBHCS --N",
+   "body": "torso",
+   "mass_g": 0.874,
+   "rule": "STEP volume x steel"
+  },
+  {
+   "part": "socket button head cap screw_am_B18.3.4M - 3 x 0.5 x 12 SBHCS --N",
+   "body": "torso",
+   "mass_g": 0.874,
+   "rule": "STEP volume x steel"
+  },
+  {
+   "part": "socket button head cap screw_am_B18.3.4M - 3 x 0.5 x 12 SBHCS --N",
+   "body": "torso",
+   "mass_g": 0.874,
+   "rule": "STEP volume x steel"
+  },
+  {
+   "part": "socket button head cap screw_am_B18.3.4M - 3 x 0.5 x 12 SBHCS --N",
+   "body": "torso",
+   "mass_g": 0.874,
+   "rule": "STEP volume x steel"
+  },
+  {
+   "part": "socket button head cap screw_am_B18.3.4M - 3 x 0.5 x 12 SBHCS --N",
+   "body": "torso",
+   "mass_g": 0.874,
+   "rule": "STEP volume x steel"
+  },
+  {
+   "part": "socket button head cap screw_am_B18.3.4M - 3 x 0.5 x 12 SBHCS --N",
+   "body": "torso",
+   "mass_g": 0.874,
+   "rule": "STEP volume x steel"
+  },
+  {
+   "part": "socket button head cap screw_am_B18.3.4M - 3 x 0.5 x 12 SBHCS --N",
+   "body": "torso",
+   "mass_g": 0.874,
+   "rule": "STEP volume x steel"
+  },
+  {
+   "part": "socket button head cap screw_am_B18.3.4M - 3 x 0.5 x 12 SBHCS --N",
+   "body": "torso",
+   "mass_g": 0.874,
+   "rule": "STEP volume x steel"
+  },
+  {
+   "part": "socket button head cap screw_am_B18.3.4M - 3 x 0.5 x 12 SBHCS --N",
+   "body": "torso",
+   "mass_g": 0.874,
+   "rule": "STEP volume x steel"
+  },
+  {
+   "part": "socket button head cap screw_am_B18.3.4M - 3 x 0.5 x 12 SBHCS --N",
+   "body": "torso",
+   "mass_g": 0.874,
+   "rule": "STEP volume x steel"
+  },
+  {
+   "part": "socket button head cap screw_am_B18.3.4M - 3 x 0.5 x 12 SBHCS --N",
+   "body": "torso",
+   "mass_g": 0.874,
+   "rule": "STEP volume x steel"
+  },
+  {
+   "part": "socket button head cap screw_am_B18.3.4M - 3 x 0.5 x 12 SBHCS --N",
+   "body": "torso",
+   "mass_g": 0.874,
+   "rule": "STEP volume x steel"
+  },
+  {
+   "part": "socket button head cap screw_am_B18.3.4M - 3 x 0.5 x 12 SBHCS --N",
+   "body": "torso",
+   "mass_g": 0.874,
+   "rule": "STEP volume x steel"
+  },
+  {
+   "part": "socket button head cap screw_am_B18.3.4M - 3 x 0.5 x 12 SBHCS --N",
+   "body": "torso",
+   "mass_g": 0.874,
+   "rule": "STEP volume x steel"
+  },
+  {
+   "part": "socket button head cap screw_am_B18.3.4M - 3 x 0.5 x 12 SBHCS --N",
+   "body": "torso",
+   "mass_g": 0.874,
+   "rule": "STEP volume x steel"
+  },
+  {
+   "part": "socket button head cap screw_am_B18.3.4M - 3 x 0.5 x 12 SBHCS --N",
+   "body": "torso",
+   "mass_g": 0.874,
+   "rule": "STEP volume x steel"
+  },
+  {
+   "part": "socket button head cap screw_am_B18.3.4M - 3 x 0.5 x 12 SBHCS --N",
+   "body": "torso",
+   "mass_g": 0.874,
+   "rule": "STEP volume x steel"
+  },
+  {
+   "part": "socket button head cap screw_am_B18.3.4M - 3 x 0.5 x 12 SBHCS --N",
+   "body": "torso",
+   "mass_g": 0.874,
+   "rule": "STEP volume x steel"
+  },
+  {
+   "part": "socket button head cap screw_am_B18.3.4M - 3 x 0.5 x 12 SBHCS --N",
+   "body": "torso",
+   "mass_g": 0.874,
+   "rule": "STEP volume x steel"
+  },
+  {
+   "part": "rocker switch 1_test",
+   "body": "torso",
+   "mass_g": 4.206,
+   "rule": "STEP volume x 1.2 g/cm3"
+  },
+  {
+   "part": "100 mm push-rod",
+   "body": "FL_femur",
+   "mass_g": 5.549,
+   "rule": "steel rod 3.0 mm x 100.0 mm (not in the STEP)"
+  },
+  {
+   "part": "28 mm push-rod",
+   "body": "FL_hip",
+   "mass_g": 1.569,
+   "rule": "steel rod 3.0 mm x 28.3 mm (not in the STEP)"
+  },
+  {
+   "part": "100 mm push-rod",
+   "body": "FR_femur",
+   "mass_g": 5.549,
+   "rule": "steel rod 3.0 mm x 100.0 mm (not in the STEP)"
+  },
+  {
+   "part": "28 mm push-rod",
+   "body": "FR_hip",
+   "mass_g": 1.569,
+   "rule": "steel rod 3.0 mm x 28.3 mm (not in the STEP)"
+  },
+  {
+   "part": "100 mm push-rod",
+   "body": "RL_femur",
+   "mass_g": 5.549,
+   "rule": "steel rod 3.0 mm x 100.0 mm (not in the STEP)"
+  },
+  {
+   "part": "28 mm push-rod",
+   "body": "RL_hip",
+   "mass_g": 1.569,
+   "rule": "steel rod 3.0 mm x 28.3 mm (not in the STEP)"
+  },
+  {
+   "part": "100 mm push-rod",
+   "body": "RR_femur",
+   "mass_g": 5.549,
+   "rule": "steel rod 3.0 mm x 100.0 mm (not in the STEP)"
+  },
+  {
+   "part": "28 mm push-rod",
+   "body": "RR_hip",
+   "mass_g": 1.569,
+   "rule": "steel rod 3.0 mm x 28.3 mm (not in the STEP)"
+  }
+ ],
+ "cad_pose_deg": {
+  "FL": {
+   "hip_pitch": 43.717309196606,
+   "tibia_abs": -43.108731805432924,
+   "knee": -86.82604100203892,
+   "hip_roll": -16.47061424589112
+  },
+  "FR": {
+   "hip_pitch": 44.2801442206884,
+   "tibia_abs": -44.40223771908874,
+   "knee": -88.68238193977713,
+   "hip_roll": -17.78231419111842
+  },
+  "RL": {
+   "hip_pitch": 43.546737731862535,
+   "tibia_abs": -40.68836104351958,
+   "knee": -84.23509877538211,
+   "hip_roll": -13.923144413148801
+  },
+  "RR": {
+   "hip_pitch": 51.39692359853404,
+   "tibia_abs": -33.87761868507717,
+   "knee": -85.2745422836112,
+   "hip_roll": -15.980200936861936
+  }
+ }
+}

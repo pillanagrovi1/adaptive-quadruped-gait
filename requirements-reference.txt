@@ -1,0 +1,5 @@
+# Only for re-measuring the reference design (scripts/measure_reference.py, mass_table.py)
+# and for drawings/renders. CI does not need these.
+cadquery-ocp>=7.7
+matplotlib>=3.8
+pillow>=10
